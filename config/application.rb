@@ -21,6 +21,6 @@ module LittleButton2
     # config.i18n.default_locale = :de
 
     # Include Bower components in compiled assets
-    config.assets.path << Rails.root.join('vendor', 'assets', 'components')
+    # config.assets.path << Rails.root.join('vendor', 'assets', 'components')
   end
 end

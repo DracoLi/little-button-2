@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LittleButton2</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title><%= :site_page_title %> | Little Button</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= body_class %>">
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">Little Button</a>
+      <div class="navbar-subbrand">for Loose Button</div>
+    </div>
+
+    <ul class="navbar-text pull-right">
+      <li>Hi Draco</li>
+      <li><a href="">Settings</a></li>
+    </ul>
+  </div>
+</nav>
 
 <%= yield %>
+
+<footer>
+  <div class="container">
+    <p>Designed and built by Draco Li (@dracoli)</p>
+    <div class="footer-links">
+      <li><a href="">Contact</a></li>
+      <!-- <li class="muted">·</li> -->
+      <!-- <li><a href=""></a></li> -->
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

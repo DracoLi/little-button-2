@@ -1,0 +1,27 @@
+<div class="container questions-container">
+
+  <button class="btn btn-primary">Add Question</button>
+  <div class="add-question">
+    <div class="add-question-label">What do you want to know about your team members?</div>
+    <form action="/" method="post">
+      <div class="add-question-text input-group">
+        <input type="text" class="form-control" placeholder="Write a question">
+          <div class="input-group-btn btn-group">
+          <button class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="search">
+    <input type="search" placeholder="Search questions" class="form-control">
+  </div>
+
+  <div class="questions-list"></div>
+</div>
+
+<script>
+  $(function() {
+    window.LilButton.Questions.updateQuestionList(<%= raw @questions_data.to_json %>);
+  });
+</script>

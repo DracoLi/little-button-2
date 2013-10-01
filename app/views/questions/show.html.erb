@@ -1,0 +1,54 @@
+<% answers = @question.answers %>
+<% user_answer = @question.answer_for_user(current_user)  %>
+<% has_other_answers = answers.count > 1 || (answers.count == 1 && user_answer == nil) %>
+
+<div class="container question-container">
+
+  <div class="question-display">
+    <div class="question-content">
+      <div class="question-label">Question:</div>
+      <div class="question-text"><%= @question.content %></div>
+    </div>
+  </div>
+
+  <div class="your-answer-display">
+  <% if user_answer != nil %>
+    <div class="your-answer-content view">
+      <div class="your-answer-label">You Answered:</div>
+      <div class="your-answer-text"><%= user_answer.content %></div>
+    </div>
+
+    <div class="you-answer-options">
+      <button class="btn edit-btn btn-default">Edit</button>
+      <button class="btn delete-btn btn-danger">Delete</button>
+    </div>
+  <% else %>
+    <div class="your-answer-content edit">
+      <div class="your-answer-label">Your Answer:</div>
+      <div class="your-answer-text"><textarea cols="50" rows="2"></textarea></div>
+    </div>
+
+    <div class="you-answer-options">
+      <button class="btn submit-btn btn-primary">Submit</button>
+    </div>
+  <% end %>
+  </div>
+
+  <div class="question-answers">
+    <% if has_other_answers %>
+      <h4>Your colleague's answers:</h4>
+      <div class="question-answers-list">
+        <% for answer in answers %>
+          <% next if answer.user == current_user %>
+          <div class="question-answer">
+            <div class="answer-user"><%= answer.user.name %></div>
+            <div class="answer-content"><%= answer.content %></div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No one has answered this question yet! Come back later!</p>
+    <% end %>
+  </div>
+
+</div>

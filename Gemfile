@@ -10,9 +10,19 @@ gem 'pg'
 # Forms
 gem 'simple_form', '~> 3.0.0.rc'
 
+# Authentication
+gem 'devise'
+gem "cancan"
+
+# Paignation
+gem 'kaminari'
+
+# API
+gem 'grape'
+
 # Assets
 gem 'sass-rails', '~> 4.0.0'
-gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8" # To support rails 4
+# gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8" # To support rails 4
 gem 'handlebars_assets'
 gem 'flutie'
 
@@ -31,9 +41,6 @@ gem 'sidekiq'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
