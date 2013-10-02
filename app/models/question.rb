@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+  include ActionView::Helpers
+
   belongs_to :company
   belongs_to :user
   has_many :answers
@@ -31,8 +33,8 @@ class Question < ActiveRecord::Base
 
       # TODO: Need to humanize these times
       # TODO: use scope to get the lastest easily
-      lastest_answered_h: self.lastest_answer.created_at.to_formatted_s(:time),
-      added_h: self.created_at.to_formatted_s(:time)
+      lastest_answered_h: time_ago_in_words(self.lastest_answer.created_at),
+      added_h: time_ago_in_words(self.created_at)
     }
   end
 

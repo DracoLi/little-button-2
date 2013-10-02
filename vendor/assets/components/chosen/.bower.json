@@ -10,5 +10,5 @@
   },
   "_source": "git://github.com/harvesthq/chosen.git",
   "_target": "~1.0.0",
-  "_direct": true
+  "_originalSource": "git://github.com/harvesthq/chosen.git"
 }

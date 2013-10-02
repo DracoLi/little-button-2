@@ -13,5 +13,5 @@
   },
   "_source": "git://github.com/Mottie/tablesorter.git",
   "_target": "~2.10.8",
-  "_direct": true
+  "_originalSource": "git://github.com/Mottie/tablesorter.git"
 }
