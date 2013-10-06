@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_filter :current_question, except: [:index, :create, :new]
 
   def index
-    @questions = company_questions
+    @questions = company_questions.order(:created_at)
     @questions_data = @questions.map do |ques|
       ques.question_data_for_user(current_user)
     end
@@ -14,18 +14,14 @@ class QuestionsController < ApplicationController
 
   end
 
-  def new
-    @question = Question.new
-  end
-
-  def edit
-  end
-
   def create
-    @question = Question.new(question_params)
-    if question.save
+    @question = Question.new(question_params.merge({
+      company: current_user.company,
+      user: current_user
+    }))
+    if @question.save
       flash[:success] = 'New Question Added!'
-      redirect_to question_path(question)
+      redirect_to questions_path
     else
       render :edit
     end

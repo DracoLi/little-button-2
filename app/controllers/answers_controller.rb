@@ -1,38 +1,33 @@
 class AnswersController < ApplicationController
 
   before_filter :authenticate_user!
-  before_filter :current_answer, except: [:index, :create, :new]
+  before_filter :current_answer, except: [:create]
 
-  def index
-    @answers = company_answers
-  end
-
-  def show
-  end
-
-  def new
-    @answer = Answer.new
-  end
-
-  def edit
-  end
+  # def index
+  #   @answers = company_answers
+  # end
 
   def create
+    question = company_questions.find(params[:question_id])
     @answer = Answer.new(answer_params.merge({
-      question: question
+      question: question,
+      user: current_user
     }))
     if @answer.save
       flash[:success] = 'New Question Added!'
-      redirect_to question_answer_path(@answer)
+      redirect_to question_path(question)
     else
       render :edit
     end
   end
 
   def update
+    if answer_params[:content].length == 0
+      return destroy
+    end
     if @answer.update_attributes(answer_params)
       flash[:success] = 'Answer Updated'
-      redirect_to question_answer_path(@answer)
+      redirect_to question_path(@answer.question)
     else
       render 'edit'
     end
@@ -41,16 +36,16 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     flash[:success] = 'Answer Removed'
-    redirect_to questions_path(@answer.question)
+    redirect_to question_path(@answer.question)
   end
 
   private
 
     def current_answer
-      @answer = company_answers.where(id: params[:id])
+      @answer = company_answers.where(id: params[:id]).first
     end
 
     def answer_params
-      params.require(:answer).permit(:content, :question)
+      params.require(:answer).permit(:content, :question_id)
     end
 end

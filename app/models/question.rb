@@ -9,8 +9,17 @@ class Question < ActiveRecord::Base
     self.company.users.count / self.answers.count.to_f
   end
 
-  def lastest_answer
+  def latest_answer
     self.answers.order('created_at DESC').first
+  end
+
+  def latest_answered_h
+    answer = self.latest_answer
+    if answer
+      time_ago_in_words answer.try(:created_at)
+    else
+      nil
+    end
   end
 
   def answered(user)
@@ -33,7 +42,7 @@ class Question < ActiveRecord::Base
 
       # TODO: Need to humanize these times
       # TODO: use scope to get the lastest easily
-      lastest_answered_h: time_ago_in_words(self.lastest_answer.created_at),
+      latest_answered_h: latest_answered_h,
       added_h: time_ago_in_words(self.created_at)
     }
   end

@@ -116,6 +116,8 @@ GEM
     nyan-cat-formatter (0.5.0)
       rspec (>= 2.13)
     orm_adapter (0.4.0)
+    paloma (2.0.6)
+      jquery-rails
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -247,6 +249,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   nyan-cat-formatter
+  paloma
   pg
   pry
   pry-rails

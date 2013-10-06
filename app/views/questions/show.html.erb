@@ -1,6 +1,8 @@
 <% answers = @question.answers %>
 <% user_answer = @question.answer_for_user(current_user)  %>
 <% has_other_answers = answers.count > 1 || (answers.count == 1 && user_answer == nil) %>
+<% form_path = user_answer ? question_answer_path(@question, user_answer) : question_answers_path(@question) %>
+<% form_method = user_answer ? :patch : :post %>
 
 <div class="question-container">
 
@@ -19,23 +21,30 @@
         <div class="myanswer-view">
           <div class="myanswer-label input-label">You Answered:</div>
           <div class="myanswer-text heading"><%= user_answer.content %></div>
-        </div>
 
-        <ul class="myanswer-options line">
-          <li class="edit-myanswer"><a href="#">Edit</a></li>
-          <li class="divider"></li>
-          <li class='delete-myanswer'><a href="#">Delete</a></li>
-          <li class="myanswer-edited">Last edited <%= time_ago_in_words(user_answer.updated_at) %></li>
-        </ul>
-      <% else %>
-        <div class="myanswer-edit">
-          <div class="myanswer-label input-label">Your Answer:</div>
-          <div class="clearfix">
-            <textarea cols="50" rows="2" class="myanswer-text form-control" placeholder="Type in your answer"></textarea>
-            <button class="btn submit-btn btn-primary">Submit</button>
-          </div>
+          <ul class="myanswer-options line">
+            <li class="edit-myanswer"><a href="#">Edit</a></li>
+            <li class="divider"></li>
+            <li class='delete-myanswer'>
+              <%= link_to "Delete", question_answer_path(@question, user_answer),
+                                                         confirm: "Are you sure you want to delete your answer?",
+                                                         method: :delete %>
+            </li>
+            <li class="myanswer-edited">Last edited <%= time_ago_in_words(user_answer.updated_at) %></li>
+          </ul>
         </div>
       <% end %>
+
+      <div class="myanswer-edit <% if user_answer != nil %>hidden<% end %>">
+        <div class="myanswer-label input-label">Your Answer:</div>
+        <%= simple_form_for Answer.new, url: form_path, method: form_method do |f| %>
+          <div class="clearfix">
+            <textarea cols="50" rows="2" class="myanswer-text form-control" placeholder="Type in your answer" name="answer[content]"></textarea>
+            <button class="btn submit-btn btn-primary">Submit</button>
+          </div>
+        <% end %>
+      </div>
+
     </div>
   </div>
 
@@ -46,7 +55,7 @@
         <% for answer in answers %>
           <% next if answer.user == current_user %>
           <li class="question-answer">
-            <span class="answer-user"><%= answer.user.name %>: </span>
+            <span class="answer-user"><% if answer.user %><%= answer.user.name %><% else %>Anonymous<% end %>: </span>
             <span class="answer-content"><%= answer.content %></span>
           </li>
         <% end %>

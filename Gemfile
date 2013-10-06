@@ -25,6 +25,7 @@ gem 'sass-rails', '~> 4.0.0'
 # gem "compass-rails", github: "milgner/compass-rails", ref: "1749c06f15dc4b058427e7969810457213647fb8" # To support rails 4
 gem 'handlebars_assets'
 gem 'flutie'
+gem 'paloma' # Better page specific javascript
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

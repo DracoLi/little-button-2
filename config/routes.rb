@@ -1,8 +1,8 @@
 LittleButton2::Application.routes.draw do
   devise_for :users
   root 'questions#index'
-  resources :questions do
-    resources :answers
+  resources :questions, only: [:index, :show, :create, :destroy, :update] do
+    resources :answers, only: [:update, :destroy, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require paloma
 //= require bootstrap/dist/js/bootstrap.js
 //= require listjs/list.min.js
 //= require listjs/plugins/fuzzy/list.fuzzySearch

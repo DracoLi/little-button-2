@@ -1,14 +1,14 @@
 <div class="showcase-wrapper add-question">
   <div class="showcase-content container">
     <h3 class="add-question-label">Hi Draco, what do you want to know about your team members?</h3>
-    <form action="/" method="post">
+    <%= simple_form_for Question.new do |f|  %>
       <div class="add-question-text input-group">
-        <input type="text" class="form-control" placeholder="Write a question">
+        <input type="text" class="form-control" placeholder="Write a question" name="question[content]">
           <div class="input-group-btn btn-group">
           <button class="btn btn-default">Submit</button>
         </div>
       </div>
-    </form>
+    <% end %>
     <div class="add-question-hint">Example: What is your favorite food?</div>
   </div>
 </div>
