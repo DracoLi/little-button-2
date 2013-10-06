@@ -1,4 +1,5 @@
 @import "partials/colors";
+@import "partials/general";
 
 body {
   color: $black;
@@ -12,4 +13,49 @@ html, h1, h2, h3, h4, h5, .heading {
 p, label, div {
   font-family: 'Open Sans', sans-serif;
   font-weight: light;
+}
+
+.showcase-wrapper {
+  background-color: $emphasis;
+
+  .showcase-content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: $text-white;
+  }
+
+  &.light {
+    background-color: $bg-gray;
+
+  }
+}
+
+.input-label {
+  color: $lighter-black;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+textarea {
+  padding: 5px 10px;
+}
+
+ul.list, ul.line {
+  list-style: none;
+  padding: 0;
+}
+
+ul.line {
+  @include clearfix;
+  > li { float: left; }
+
+  li.divider {
+    height: 12px;
+    width: 1px;
+    margin: 0 5px;
+    margin-top: 4px;
+    background-color: $black;
+  }
 }

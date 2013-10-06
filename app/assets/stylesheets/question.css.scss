@@ -1,15 +1,6 @@
 @import "partials/colors";
 
-$add-ques-bg: #3D4D7C;
-$search-input-border: #A7A7A7;
-
-.add-question-wrapper {
-  background-color: $add-ques-bg;
-
-  .add-question {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
+.add-question {
 
   .add-question-label {
     color: $text-white;
@@ -20,12 +11,17 @@ $search-input-border: #A7A7A7;
     max-width: 800px;
 
     input[type="text"] {
-      border: solid 3px $search-input-border;
+      border: solid 3px $input-border;
       height: 38px;
+      border-radius: 3px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
     button.btn {
-      border: solid 3px $search-input-border;
+      border: solid 3px $input-border;
       height: 38px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
       border-left: 0;
     }
   }
@@ -42,16 +38,6 @@ $search-input-border: #A7A7A7;
 
   .search-wrapper {
     max-width: 450px;
-
-    input {
-      border: 2px solid $search-input-border;
-      border-radius: 0;
-      padding-top: 8px;
-      padding-bottom: 8px;
-      height: 39px;
-      font-size: 14px;
-      box-shadow: none;
-    }
   }
 
   .list {
@@ -77,13 +63,7 @@ $search-input-border: #A7A7A7;
       font-weight: normal;
       color: $ques-details-color;
 
-      > li { float: left; }
-
       li.divider {
-        height: 12px;
-        width: 1px;
-        margin: 0 5px;
-        margin-top: 4px;
         background-color: $ques-details-color;
       }
 
@@ -93,5 +73,91 @@ $search-input-border: #A7A7A7;
         margin-right: 2px;
       }
     }
+  }
+}
+
+.question {
+  .question-label {
+    color: $emphasis-light;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .question-text {
+    margin: 10px 0;
+  }
+
+  .question-added {
+    font-size: 11px;
+    color: $emphasis-light;
+    font-style: italic;
+    font-weight: 200;
+  }
+}
+
+.myanswer {
+
+  .myanswer-edit {
+    .myanswer-text {
+      border-radius: 3px;
+      max-width: 340px;
+      min-height: 60px;
+      float: left;
+    }
+    .submit-btn {
+      margin-top: 25px;
+      margin-left: 10px;
+      float: left;
+    }
+  }
+
+  .myanswer-view {
+    .myanswer-text {
+      font-weight: 300;
+      color: $black;
+      font-size: 20px;
+    }
+  }
+
+  .myanswer-options {
+    color: $black;
+    margin: 0;
+    margin-top: 7px;
+    li a { color: $black; }
+    .myanswer-edited {
+      margin-left: 10px;
+      font-size: 12px;
+      font-weight: 200;
+      font-style: italic;
+      margin-top: 2px
+    }
+  }
+}
+
+#questionAnswers {
+  margin: 30px auto;
+
+  input.search {
+    max-width: 400px;
+  }
+
+  .list {
+    margin: 15px 0;
+    max-width: 700px;
+  }
+
+  .question-answer {
+    margin: 5px 0;
+    color: lighten($black, 18%);
+    border-bottom: 1px solid $divider-light;
+    padding: 12px 0;
+
+    .answer-user {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .answer-content { font-weight: normal; }
   }
 }

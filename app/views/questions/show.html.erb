@@ -2,50 +2,55 @@
 <% user_answer = @question.answer_for_user(current_user)  %>
 <% has_other_answers = answers.count > 1 || (answers.count == 1 && user_answer == nil) %>
 
-<div class="container question-container">
+<div class="question-container">
 
-  <div class="question-display">
-    <div class="question-content">
-      <div class="question-label">Question:</div>
-      <div class="question-text"><%= @question.content %></div>
+  <div class="showcase-wrapper question">
+    <div class="showcase-content container">
+      <h4 class="question-label">Question:</h4>
+      <h3 class="question-text"><%= @question.content %></h3>
+      <div class="question-added">Asked <%= time_ago_in_words(@question.created_at) %> ago</div>
     </div>
   </div>
 
-  <div class="your-answer-display">
-  <% if user_answer != nil %>
-    <div class="your-answer-content view">
-      <div class="your-answer-label">You Answered:</div>
-      <div class="your-answer-text"><%= user_answer.content %></div>
-    </div>
 
-    <div class="you-answer-options">
-      <button class="btn edit-btn btn-default">Edit</button>
-      <button class="btn delete-btn btn-danger">Delete</button>
-    </div>
-  <% else %>
-    <div class="your-answer-content edit">
-      <div class="your-answer-label">Your Answer:</div>
-      <div class="your-answer-text"><textarea cols="50" rows="2"></textarea></div>
-    </div>
+  <div class="myanswer showcase-wrapper light">
+    <div class="showcase-content container">
+      <% if user_answer != nil %>
+        <div class="myanswer-view">
+          <div class="myanswer-label input-label">You Answered:</div>
+          <div class="myanswer-text heading"><%= user_answer.content %></div>
+        </div>
 
-    <div class="you-answer-options">
-      <button class="btn submit-btn btn-primary">Submit</button>
+        <ul class="myanswer-options line">
+          <li class="edit-myanswer"><a href="#">Edit</a></li>
+          <li class="divider"></li>
+          <li class='delete-myanswer'><a href="#">Delete</a></li>
+          <li class="myanswer-edited">Last edited <%= time_ago_in_words(user_answer.updated_at) %></li>
+        </ul>
+      <% else %>
+        <div class="myanswer-edit">
+          <div class="myanswer-label input-label">Your Answer:</div>
+          <div class="clearfix">
+            <textarea cols="50" rows="2" class="myanswer-text form-control" placeholder="Type in your answer"></textarea>
+            <button class="btn submit-btn btn-primary">Submit</button>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
   </div>
 
-  <div class="question-answers">
+  <div id="questionAnswers" class="container list">
     <% if has_other_answers %>
-      <h4>Your colleague's answers:</h4>
-      <div class="question-answers-list">
+      <input type="search" placeholder="Search Person" class="form-control search">
+      <ul class="list">
         <% for answer in answers %>
           <% next if answer.user == current_user %>
-          <div class="question-answer">
-            <div class="answer-user"><%= answer.user.name %></div>
-            <div class="answer-content"><%= answer.content %></div>
-          </div>
+          <li class="question-answer">
+            <span class="answer-user"><%= answer.user.name %>: </span>
+            <span class="answer-content"><%= answer.content %></span>
+          </li>
         <% end %>
-      </div>
+      </ul>
     <% else %>
       <p>No one else have answered this question yet! Come back later!</p>
     <% end %>

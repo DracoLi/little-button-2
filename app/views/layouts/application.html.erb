@@ -3,7 +3,7 @@
 <head>
   <title><%= :site_page_title %> | Little Button</title>
   <%= stylesheet_link_tag "application", media: "all" %>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700|Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200italic,200,300,400,600,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -12,7 +12,7 @@
 <nav class="navbar">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="">
+      <a class="navbar-brand" href="<%= root_path %>">
         <span class="span main-brand heading">Little Button</span>
         <span class="sub-brand heading">for Draken Solutions</span>
       </a>

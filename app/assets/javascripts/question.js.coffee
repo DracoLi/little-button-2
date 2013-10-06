@@ -18,3 +18,8 @@ window.LilButton.Questions =
     # Prepend question to list
     $(questionHTML).prependTo $('#questionsList .list')
 
+
+
+$ ->
+  # Initialize question page answers list
+  new List('questionAnswers', {valueNames: ['answer-user']})
