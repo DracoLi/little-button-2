@@ -1,0 +1,15 @@
+@import "partials/colors";
+
+body {
+  color: $black;
+}
+
+html, h1, h2, h3, h4, h5, .heading {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: normal;
+}
+
+p, label, div {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: light;
+}

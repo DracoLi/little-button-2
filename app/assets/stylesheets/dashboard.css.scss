@@ -1,10 +1,65 @@
+@import "partials/colors";
+
+$navbar-bg: #F3F3F3;
+$link-hover-bg: #E6E6E6;
+
 .navbar {
-  .navbar-header {
-    .navbar-brand { font-size: 20px }
-    .navbar-subbrand {
-      float: left;
-      margin-top: 15px;
+  background-color: $navbar-bg;
+  margin-bottom: 0;
+}
+
+.navbar-header {
+  .navbar-brand {
+
+    .main-brand {
+      color: $black;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .sub-brand {
       font-size: 14px;
+      color: $gray;
+      margin-left: 2px;
     }
   }
+}
+
+.navbar-nav.navbar-right {
+  .dropdown-toggle:hover {
+    background-color: $link-hover-bg;
+  }
+
+  .dropdown-menu {
+    box-shadow: none;
+    border-top-color: $navbar-bg;
+    border-radius: 0;
+  }
+
+  .gravatar {
+    width: 25px;
+    height: 25px;
+    float: left;
+  }
+
+  .user-name {
+    float: left;
+    margin-top: 3px;
+    margin-left: 5px;
+    color: $black;
+
+    .caret {
+      border-top-color: $gray;
+      border-bottom-color: $gray;
+    }
+  }
+}
+
+footer {
+  padding: 10px 0;
+  background-color: #FFF;
+  border-top: 1px solid #BBB;
+  margin-top: 30px;
+
+  p { margin: 0; }
 }

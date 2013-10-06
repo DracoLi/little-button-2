@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/dist/js/bootstrap.js
+//= require listjs/list.min.js
+//= require listjs/plugins/fuzzy/list.fuzzySearch
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require_tree .

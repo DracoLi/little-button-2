@@ -2,9 +2,13 @@ window.LilButton ||= {}
 window.LilButton.Questions =
 
   updateQuestionList: (data) ->
-    $('.questions-list').empty()
+    $('#questionsList .list').empty()
     for quesData in data
       @addQuestion(quesData)
+
+    options =
+      valueNames: ['the-question', 'answered']
+    @questionsList = new List('questionsList', options)
 
   addQuestion: (questionData) ->
     # Convert percentage float into string
@@ -12,4 +16,5 @@ window.LilButton.Questions =
     questionHTML = HandlebarsTemplates['question-row'](questionData)
 
     # Prepend question to list
-    $(questionHTML).prependTo $('.questions-list')
+    $(questionHTML).prependTo $('#questionsList .list')
+

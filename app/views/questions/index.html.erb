@@ -1,8 +1,6 @@
-<div class="container questions-container">
-
-  <button class="btn btn-primary">Add Question</button>
-  <div class="add-question">
-    <div class="add-question-label">What do you want to know about your team members?</div>
+<div class="add-question-wrapper">
+  <div class="add-question container">
+    <h3 class="add-question-label">Hi Draco, what do you want to know about your team members?</h3>
     <form action="/" method="post">
       <div class="add-question-text input-group">
         <input type="text" class="form-control" placeholder="Write a question">
@@ -11,13 +9,17 @@
         </div>
       </div>
     </form>
+    <div class="add-question-hint">Example: What is your favorite food?</div>
+  </div>
+</div>
+
+<div class="questions-container container" id="questionsList">
+  <h2>Asked Questions</h2>
+  <div class="search-wrapper">
+    <input type="search" placeholder="Search Questions" class="form-control search">
   </div>
 
-  <div class="search">
-    <input type="search" placeholder="Search questions" class="form-control">
-  </div>
-
-  <div class="questions-list"></div>
+  <ul class="list"></ul>
 </div>
 
 <script>

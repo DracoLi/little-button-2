@@ -1,9 +1,12 @@
-<div class="question-row question-{{id}}" data-question-id="{{id}}">
-  <div class="question-content"><a href="/questions/{{id}}">{{content}}</a></div>
-  <div class="question-details">
-    <div class="answered">{{#if answered}}answered{{else}}unanswered{{/if}}</div>
-    <div class="total-answered-p">{{answered_p}}% Answered</div>
-    <div class="last-answer-time">Last answered {{lastest_answered_h}} ago</div>
-    <div class="added-time">Added {{added_h}} ago</div>
-  </div>
-</div>
+<li class="question-row question-{{id}}" data-question-id="{{id}}">
+  <div class="question-content heading"><a href="/questions/{{id}}" class='the-question'>{{content}}</a></div>
+  <ul class="question-details clearfix">
+    <li class="answered">{{#if answered}}<span class="glyphicon glyphicon-ok"></span> answered{{else}}<span class="glyphicon glyphicon-remove"></span> unanswered{{/if}}</li>
+    <li class="divider"></li>
+    <li class="total-answered-p">{{answered_p}}% Answered</li>
+    <li class="divider"></li>
+    <li class="last-answer-time">Last answered {{lastest_answered_h}} ago</li>
+    <li class="divider"></li>
+    <li class="added-time">Asked {{added_h}} ago</li>
+  </ul>
+</li>

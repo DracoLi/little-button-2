@@ -1,3 +1,97 @@
-// Place all the styles related to the Question controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "partials/colors";
+
+$add-ques-bg: #3D4D7C;
+$search-input-border: #A7A7A7;
+
+.add-question-wrapper {
+  background-color: $add-ques-bg;
+
+  .add-question {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .add-question-label {
+    color: $text-white;
+    margin-top: 0px;
+  }
+
+  .add-question-text {
+    max-width: 800px;
+
+    input[type="text"] {
+      border: solid 3px $search-input-border;
+      height: 38px;
+    }
+    button.btn {
+      border: solid 3px $search-input-border;
+      height: 38px;
+      border-left: 0;
+    }
+  }
+
+  .add-question-hint {
+    color: #BEBEBE;
+    margin-top: 6px;
+    font-size: 12px;
+  }
+}
+
+.questions-container {
+  h2 { font-weight: bold; }
+
+  .search-wrapper {
+    max-width: 450px;
+
+    input {
+      border: 2px solid $search-input-border;
+      border-radius: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      height: 39px;
+      font-size: 14px;
+      box-shadow: none;
+    }
+  }
+
+  .list {
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+
+    .question-content a {
+      font-size: 24px;
+      text-decoration: underline;
+    }
+
+    .question-row {
+      padding: 10px 20px;
+      background-color: $bg-gray;
+    }
+
+    $ques-details-color: #555;
+    .question-details {
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
+      font-weight: normal;
+      color: $ques-details-color;
+
+      > li { float: left; }
+
+      li.divider {
+        height: 12px;
+        width: 1px;
+        margin: 0 5px;
+        margin-top: 4px;
+        background-color: $ques-details-color;
+      }
+
+      .answered .glyphicon {
+        color: lighten($ques-details-color, 15%);
+        font-size: 11px;
+        margin-right: 2px;
+      }
+    }
+  }
+}
