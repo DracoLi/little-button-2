@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :answers, dependent: :destroy
   has_many :questions, dependent: :nullify
+
+  def answered(question)
+    question.answers.where(user: self).exists?
+  end
 end

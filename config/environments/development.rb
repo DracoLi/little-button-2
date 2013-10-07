@@ -27,5 +27,16 @@ LittleButton2::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+    # Configure mail
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => ENV["MANDRILL_USERNAME"],
+    :password  => ENV["MANDRILL_API_KEY"],
+    :domain    => 'heroku.com',
+    :authentication => :plain
+  }
+
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.mandrill_mailer.default_url_options = { :host => 'localhost:3000' }
 end

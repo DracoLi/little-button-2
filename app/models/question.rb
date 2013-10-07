@@ -22,14 +22,6 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def answered(user)
-    !self.answer_for_user(user).nil?
-  end
-
-  def answer_for_user(user)
-    self.answers.where(user: user).first
-  end
-
   # Data related to this question, including its content and answer rate
   def question_data
     {
@@ -49,7 +41,7 @@ class Question < ActiveRecord::Base
 
   def question_data_for_user(user)
     self.question_data.merge({
-      answered: self.answered(user)
+      answered: user.answered(self)
     })
   end
 end

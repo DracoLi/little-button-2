@@ -7,6 +7,12 @@ LittleButton2::Application.routes.draw do
     resources :answers, only: [:update, :destroy, :create]
   end
 
+  # Sidekiq processes
+  require 'sidekiq/web'
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # Incoming email processing
   # mount_griddler('/email/incoming')
 

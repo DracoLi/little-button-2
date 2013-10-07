@@ -20,7 +20,8 @@ gem 'kaminari'
 # API
 gem 'grape'
 
-# Incoming email processing
+# Email processing
+gem 'mandrill_mailer'
 gem 'griddler'
 
 # Assets
@@ -39,6 +40,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Background jobs
 gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq'
+gem 'autoscaler'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -58,6 +60,12 @@ end
 group :production do
   gem 'rails_12factor'
 end
+
+# Others
+gem 'annotate'
+gem 'figaro'
+gem 'newrelic_rpm'
+gem 'sentry-raven'
 
 # Debugging
 group :development do

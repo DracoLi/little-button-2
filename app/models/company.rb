@@ -3,19 +3,13 @@ class Company < ActiveRecord::Base
   has_many :users, dependent: :destroy
   has_many :answers, through: :questions
 
-  has_one :scheduled_collect_answer, dependent: :destroy
-  has_one :scheduled_collect_question, dependent: :destroy
-  has_one :scheduled_email_answers, dependent: :destroy
-
-  def next_collect_answer_email_time(question)
-
-  end
-
-  def next_collect_question_time
-
-  end
-
-  def next_email_answers_time
-
-  end
+  has_one :collect_answers_schedule,
+          class_name: 'ScheduledTime'
+          foreign_key: 'collect_answers_schedule_id'
+  has_one :collect_questions_schedule,
+          class_name: 'ScheduledTime'
+          foreign_key: 'email_questions_schedule_id'
+  has_one :email_answers_schedule,
+          class_name: 'ScheduledTime'
+          foreign_key: 'email_answers_schedule_id'
 end
