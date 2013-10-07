@@ -1,9 +1,14 @@
 LittleButton2::Application.routes.draw do
+  get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
+
   devise_for :users
   root 'questions#index'
   resources :questions, only: [:index, :show, :create, :destroy, :update] do
     resources :answers, only: [:update, :destroy, :create]
   end
+
+  # Incoming email processing
+  # mount_griddler('/email/incoming')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
