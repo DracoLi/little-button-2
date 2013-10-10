@@ -26,6 +26,8 @@ $link-hover-bg: #E6E6E6;
 }
 
 .navbar-nav.navbar-right {
+
+  .dropdown-toggle { line-height: 23px; }
   .dropdown-toggle:hover {
     background-color: $link-hover-bg;
   }
