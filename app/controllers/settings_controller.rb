@@ -1,4 +1,6 @@
 class SettingsController < ApplicationController
+  layout "settings"
+
   include Devise::Models::DatabaseAuthenticatable
 
   before_filter :authenticate_user_is_admin, only: [:admin,

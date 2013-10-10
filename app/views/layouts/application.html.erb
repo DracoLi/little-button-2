@@ -7,44 +7,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body id="<%= body_class %>">
-
-<nav class="navbar">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="<%= root_path %>">
-        <span class="span main-brand heading">Little Button</span>
-        <span class="sub-brand heading">for Draken Solutions</span>
-      </a>
-    </div>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">
-          <img src="https://dl.dropboxusercontent.com/u/176278/ruby_identicon.png" class="gravatar">
-          <div class="user-name">Draco <b class="caret"></b></div>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="<%= questions_path %>">Add Question</a></li>
-          <li class="divider"></li>
-          <li><a href="<%= settings_path %>">My Settings</a></li>
-          <li><a href="<%= settings_admin_path %>">Admin Settings</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<div class="global-alerts"><%= bootstrap_flash %>
-</div>
+<body class="<%= body_class %>">
 
 <%= yield :content %>
-
-<footer>
-  <div class="container">
-    <p>Designed and built by <a href="http://www.dracoli.com" target="_blank">Draco Li</a></p>
-  </div>
-</footer>
 
 </body>
 </html>

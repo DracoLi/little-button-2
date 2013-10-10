@@ -42,7 +42,7 @@ class Question < ActiveRecord::Base
     {
       id: self.id,
       content: self.content,
-      user: self.user.id,
+      user: self.user ? self.user.id : nil,
       added_source: self.added_source,
       company: self.company.id,
       answered_p: self.answered_p,

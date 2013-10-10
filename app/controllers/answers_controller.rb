@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  layout "dashboard"
 
   before_filter :authenticate_user!
   before_filter :current_answer, except: [:create]

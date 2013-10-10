@@ -64,3 +64,8 @@ $ ->
     $(@).parents('.alert').remove()
 
   window.LilButton.General.initializeScheduleForms()
+
+  # Sign in sign up verticle align
+  $login = $('.login')
+  $login.css
+    'margin-top': -$login.height() / 2.0

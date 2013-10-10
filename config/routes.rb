@@ -1,8 +1,19 @@
 LittleButton2::Application.routes.draw do
   get "/email_processor", to: proc { [200, {}, ["OK"]] }, as: "mandrill_head_test_request"
 
-  devise_for :users
   root 'questions#index'
+
+  # User registration
+  devise_for :users, :skip => [:sessions, :registration]
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    get 'signup' => 'devise/registrations#new', :as => :new_user_registration
+    post 'signup' => 'devise/registrations#create', :as => :user_registration
+    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+
+  # Questions & Answers
   resources :questions, only: [:index, :show, :create, :destroy, :update] do
     resources :answers, only: [:update, :destroy, :create]
   end
@@ -13,6 +24,7 @@ LittleButton2::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  # Settings
   scope '/settings' do
     get '', to: 'settings#index', as: 'settings'
 
