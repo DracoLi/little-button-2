@@ -37,10 +37,10 @@
              value="<%= schedule.time.strftime('%I:%M') %>" class="scheduled-time">
       <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-default <% if ampm == 'AM' %>active<% end %>">
-          <input type="radio" name="scheduled_time[ampm]" value="AM"> AM
+          <input type="radio" name="scheduled_time[ampm]" value="AM" <% if ampm == 'AM' %>checked="checked"<% end %>> AM
         </label>
         <label class="btn btn-default <% if ampm == 'PM' %>active<% end %>">
-          <input type="radio" name="scheduled_time[ampm]" value="PM"> PM
+          <input type="radio" name="scheduled_time[ampm]" value="PM" <% if ampm == 'PM' %>checked="checked"<% end %>> PM
         </label>
       </div>
     </div>

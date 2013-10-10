@@ -31,14 +31,26 @@ window.LilButton.General =
       $select.show()
     else if frequency == 'Weekly' or frequency == 'Monthly'
       $select.removeAttr('disabled')
+
+      # Get new option values
       if frequency == 'Weekly'
         values = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
       else if frequency == 'Monthly'
         values = [1..31]
+
+      # Add in new options
+      hasValue = false
       $.each values, (index, value) ->
         $option = $("<option value=\"#{value}\">#{value}</option>")
-        $option.attr('selected', 'selected') if dayValue == value
+        if dayValue == value
+          $option.attr('selected', 'selected')
+          hasValue = true
         $select.append $option
+
+      # Select first value by default if no targeted value
+      if not hasValue
+        $select.find('option').first().attr('checked', 'checked')
+
 
     # Append the new select and enable chosen on it
     $another = $select.clone()
