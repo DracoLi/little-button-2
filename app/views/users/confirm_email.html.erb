@@ -1,0 +1,16 @@
+<% content_for(:extra_body_classes, 'devise just-text') %>
+
+<% content_for :site_page_title, 'Confirm Email' %>
+
+<% content_for :content do %>
+
+<div class="login">
+  <div class="content">
+    <h3 class="desc">Good job with signing up! Now you just need to confirm your email!</h3>
+    <div class="login-related-links">
+      <%= link_to "Sign in", new_user_session_path, class: 'signin-link' %>
+    </div>
+  </div>
+</div>
+
+<% end %>

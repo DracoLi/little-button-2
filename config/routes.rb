@@ -6,12 +6,14 @@ LittleButton2::Application.routes.draw do
   # User registration
   devise_for :users, :skip => [:sessions, :registration]
   as :user do
-    get 'login' => 'devise/sessions#new', :as => :new_user_session
-    post 'login' => 'devise/sessions#create', :as => :user_session
-    get 'signup' => 'devise/registrations#new', :as => :new_user_registration
-    post 'signup' => 'devise/registrations#create', :as => :user_registration
-    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get 'login', to: 'devise/sessions#new', as: :new_user_session
+    post 'login', to: 'devise/sessions#create', as: :user_session
+    get 'signup', to: 'devise/registrations#new', as: :new_user_registration
+    post 'signup', to: 'devise/registrations#create', as: :user_registration
+    delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
+  get 'confirm-email' => 'users#confirm_email', as: 'confirm_email'
+  get 'company-from-email' => 'companies#company_from_email', as: 'company_from_email'
 
   # Questions & Answers
   resources :questions, only: [:index, :show, :create, :destroy, :update] do

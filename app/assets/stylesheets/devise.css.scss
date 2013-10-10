@@ -5,7 +5,20 @@
   .form-group { margin-bottom: 20px; }
 }
 
-.devise-sessions, .devise-registrations, .devise-passwords {
+.devise.just-text {
+  .desc { text-align: center; }
+  .login {
+    width: 100%;
+    margin: 0;
+    left: 0;
+    text-align: center;
+    .content {
+      display: inline-block;
+    }
+  }
+}
+
+.devise-sessions, .devise-registrations, .devise-passwords, .devise {
   height: 100%;
   background-color: #FAFAFA;
 
@@ -32,9 +45,11 @@
       margin-top: 2px;
       height: 20px;
       width: 100%;
+      text-align: left;
+      font-size: 17px;
     }
 
-    form { margin-top: 25px; }
+    form { margin-top: 15px; }
 
     .form-control, .btn {
       height: 38px;

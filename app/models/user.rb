@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     def valid_company_email
       domain = self.email.split("@").last
       unless Company.where(email_domain: domain).exists?
-        errros.add(:email, 'Company not registered with Little Button')
+        errors.add(:email, 'Company not registered with Little Button')
       end
     end
 
