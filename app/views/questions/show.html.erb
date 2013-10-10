@@ -1,8 +1,12 @@
 <% answers = @question.answers %>
-<% user_answer = @question.answer_for_user(current_user)  %>
+<% user_answer = current_user.answer_for_question(@question)  %>
 <% has_other_answers = answers.count > 1 || (answers.count == 1 && user_answer == nil) %>
 <% form_path = user_answer ? question_answer_path(@question, user_answer) : question_answers_path(@question) %>
 <% form_method = user_answer ? :patch : :post %>
+
+<% content_for :site_page_title, @question.content %>
+
+<% content_for :content do %>
 
 <div class="question-container">
 
@@ -66,3 +70,5 @@
   </div>
 
 </div>
+
+<% end %>

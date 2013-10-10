@@ -1,0 +1,32 @@
+<% content_for :site_page_title, 'Settings' %>
+
+<% content_for :settings_content do %>
+
+  <%= simple_form_for current_user, url: settings_update_name_path,
+      html: { class: 'update-name general-updates' } do |f| %>
+    <h4>Update Your Name</h4>
+    <div class="input-group">
+      <input type="text" class="form-control" name="user[name]" value="<%= current_user.name %>" id="updateName">
+      <div class="input-group-btn btn-group">
+        <button class="btn btn-default">Update</button>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%= simple_form_for current_user, url: settings_update_password_path,
+      html: { class: 'update-password' },
+      :defaults => { :input_html => { :class => 'form-control' } } do |f| %>
+    <h3>Change Password</h3>
+    <%= f.input :current_password %>
+    <!-- <div class="form-group">
+      <label for="updatePassword">Current Password</label>
+      <input type="password" id="updatePassword" class="form-control" name="user[current_password]">
+    </div> -->
+    <%= f.input :password, label: 'New Password' %>
+    <%= f.input :password_confirmation, label: 'Confirm New Password' %>
+    <%= f.button :submit, 'Update', class: 'btn btn-default' %>
+  <% end %>
+
+<% end %>

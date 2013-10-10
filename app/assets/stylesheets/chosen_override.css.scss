@@ -1,0 +1,46 @@
+@import "partials/colors";
+
+.chosen-container-single .chosen-single {
+  height: 38px;
+  font-size: 14px;
+  box-shadow: none;
+  border: 1px solid $input-border;
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 12px;
+  line-height: 20px;
+}
+
+.chosen-container-single .chosen-single div b {
+  background-position: 0px 9px;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single {
+  border: 1px solid $input-border;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.chosen-container .chosen-results {
+  margin: 0;
+  padding: 0;
+}
+
+.chosen-container .chosen-results li {
+  font-size: 14px;
+  padding: 10px 15px;
+}
+
+.chosen-container .chosen-results li.highlighted {
+  background: $emphasis;
+}
+
+.chosen-container .chosen-drop {
+  border: 1px solid $input-border;
+  border-top: none;
+}
+
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+  background-position: -18px 9px;
+}

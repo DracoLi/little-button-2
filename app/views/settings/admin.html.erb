@@ -1,0 +1,48 @@
+<% company = current_user.company %>
+
+<% content_for :site_page_title, 'Admin' %>
+
+<% content_for :settings_content do %>
+
+  <%= simple_form_for company, url: update_company_name_path,
+      html: { class: 'update-company-name general-updates' } do |f| %>
+    <h4>Update Company Name</h4>
+    <div class="input-group">
+      <input type="text" class="form-control" name="company[name]" value="<%= company.name %>">
+      <div class="input-group-btn btn-group">
+        <button class="btn btn-default">Update</button>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%= render partial: 'shared/frequency_form', locals: {
+    schedule: company.email_answers_schedule,
+    form_path: update_email_answers_schedule_path,
+    form_class: 'email-answers-schedule',
+    form_title: 'Question Answers Email Frequency',
+    form_desc: 'The frequency in which answers to selected questions are emailed to everyone on the team.'
+  } %>
+
+  <hr>
+
+  <%= render partial: 'shared/frequency_form', locals: {
+    schedule: company.collect_answers_schedule,
+    form_path: update_collect_answers_schedule_path,
+    form_class: 'collect-answers-schedule',
+    form_title: 'Collect Answers Email Frequency',
+    form_desc: 'The frequency in which everyone on the team are emailed to provide an answer to an unanswered question.'
+  } %>
+
+  <hr>
+
+  <%= render partial: 'shared/frequency_form', locals: {
+    schedule: company.collect_questions_schedule,
+    form_path: update_collect_questions_schedule_path,
+    form_class: 'collect-questions-schedule',
+    form_title: 'Collect Questions Email Frequency',
+    form_desc: 'The frequency in which everyone on the team are emailed to provide a question to be added to the questions list.'
+  } %>
+
+<% end %>

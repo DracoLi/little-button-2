@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require bootstrap/dist/css/bootstrap.css
+ *= require chosen/chosen.css
  *= require_tree .
  */

@@ -1,4 +1,23 @@
+# == Schema Information
+#
+# Table name: scheduled_times
+#
+#  id                            :integer          not null, primary key
+#  frequency                     :string(255)
+#  day                           :string(255)
+#  time                          :datetime
+#  created_at                    :datetime
+#  updated_at                    :datetime
+#  collect_answers_schedule_id   :integer
+#  collect_questions_schedule_id :integer
+#  email_answers_schedule_id     :integer
+#
+
 class ScheduledTime < ActiveRecord::Base
+
+  belongs_to :company, inverse_of: :collect_answers_schedule
+  belongs_to :company, inverse_of: :collect_questions_schedule
+  belongs_to :company, inverse_of: :email_answers_schedule
 
   def next_scheduled_time(timezone)
 
@@ -40,4 +59,7 @@ class ScheduledTime < ActiveRecord::Base
     next_time
   end
 
+  def to_s
+    "Schedule: #{self.frequency}, day (#{self.day}), #{self.time.strftime("%I:%M %p")}"
+  end
 end

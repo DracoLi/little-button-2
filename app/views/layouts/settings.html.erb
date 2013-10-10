@@ -1,0 +1,18 @@
+<% content_for :content do %>
+
+  <div class="settings container">
+    <div class="row">
+      <div class="sidebar col-md-2">
+        <ul class="sidebar-nav">
+          <li><%= link_to 'Admin', settings_admin_path %></li>
+          <li class="active"><%= link_to 'Settings', settings_account_path %></li>
+        </ul>
+      </div>
+      <div class="settings-content-wrapper col-md-10">
+        <div class="settings-content"><%= yield :settings_content %></div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+<%= render template: "layouts/application" %>

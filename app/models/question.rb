@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id                :integer          not null, primary key
+#  content           :string(255)
+#  added_source      :string(255)
+#  user_id           :integer
+#  company_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  last_emailed_time :datetime
+#  answers_count     :integer          default(0)
+#
+
 class Question < ActiveRecord::Base
   include ActionView::Helpers
 

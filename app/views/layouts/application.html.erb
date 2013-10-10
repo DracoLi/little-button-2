@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= :site_page_title %> | Little Button</title>
+  <title><%= yield :site_page_title %> | Little Button</title>
   <%= stylesheet_link_tag "application", media: "all" %>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200italic,200,300,400,600,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200italic,200,300,400,600,700|Open+Sans:600,400,300' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= body_class %>">
+<body id="<%= body_class %>">
 
 <nav class="navbar">
   <div class="container">
@@ -27,15 +27,18 @@
         <ul class="dropdown-menu">
           <li><a href="<%= questions_path %>">Add Question</a></li>
           <li class="divider"></li>
-          <li><a href="#">My Settings</a></li>
-          <li><a href="#">Company Settings</a></li>
+          <li><a href="<%= settings_path %>">My Settings</a></li>
+          <li><a href="<%= settings_admin_path %>">Admin Settings</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
 
-<%= yield %>
+<div class="global-alerts"><%= bootstrap_flash %>
+</div>
+
+<%= yield :content %>
 
 <footer>
   <div class="container">

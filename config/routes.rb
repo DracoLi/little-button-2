@@ -13,6 +13,34 @@ LittleButton2::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  scope '/settings' do
+    get '', to: 'settings#index', as: 'settings'
+
+    scope '/account' do
+      get '', to: 'settings#account', as: 'settings_account'
+      patch '',
+            to: 'settings#settings_update_password',
+            as: 'settings_update_password'
+      patch 'update-name',
+            to: 'settings#settings_update_name',
+            as: 'settings_update_name'
+    end
+
+    scope '/admin' do
+      get '', to: 'settings#admin', as: 'settings_admin'
+      patch '', to: 'settings#update_company_name', as: 'update_company_name'
+      patch 'update-collect-answers-schedule',
+            to: 'settings#update_collect_answers_schedule',
+            as: 'update_collect_answers_schedule'
+      patch 'update-collect-questions-schedule',
+            to: 'settings#update_collect_questions_schedule',
+            as: 'update_collect_questions_schedule'
+      patch 'update-email-answers-schedule',
+            to: 'settings#update_email_answers_schedule',
+            as: 'update_email_answers_schedule'
+    end
+  end
+
   # Incoming email processing
   # mount_griddler('/email/incoming')
 

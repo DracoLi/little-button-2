@@ -9,21 +9,6 @@
 
   .add-question-text {
     max-width: 800px;
-
-    input[type="text"] {
-      border: solid 3px $input-border;
-      height: 38px;
-      border-radius: 3px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    button.btn {
-      border: solid 3px $input-border;
-      height: 38px;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
-      border-left: 0;
-    }
   }
 
   .add-question-hint {
@@ -43,7 +28,8 @@
   .list {
     margin: 20px 0;
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
+    background-color: $bg-gray;
 
     .question-content a {
       font-size: 24px;
@@ -52,7 +38,6 @@
 
     .question-row {
       padding: 10px 20px;
-      background-color: $bg-gray;
     }
 
     $ques-details-color: #555;

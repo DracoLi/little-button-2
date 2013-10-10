@@ -5,12 +5,12 @@ body {
   color: $black;
 }
 
-html, h1, h2, h3, h4, h5, .heading {
+h1, h2, h3, h4, h5, .heading {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;
 }
 
-p, label, div {
+html, p, label, div {
   font-family: 'Open Sans', sans-serif;
   font-weight: light;
 }
@@ -58,4 +58,43 @@ ul.line {
     margin-top: 4px;
     background-color: $black;
   }
+}
+
+.input-group {
+  input[type="text"].form-control {
+    border: solid 3px $input-border;
+    height: 38px;
+    border-radius: 3px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  button.btn {
+    border: solid 3px $input-border;
+    height: 38px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: 0;
+    font-weight: 600;
+  }
+}
+
+.schedule-form {
+  margin-left: 0;
+  max-width: 550px;
+
+  .form-desc {
+    margin-top: 15px;
+    margin-bottom: 25px;
+  }
+
+  .btn-group label { padding: 8px 12px; }
+
+  input[type="text"] { width: 80px; }
+  input[type="submit"] { width: 100px; }
+
+  .time input[type="text"] { display: inline; }
+  .time .btn-group { margin-left: 11px; }
+  .time .btn-group .btn { width: 75px; }
+  .frequency .btn-group .btn { width: 82px; }
 }

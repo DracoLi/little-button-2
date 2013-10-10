@@ -1,0 +1,55 @@
+<% ampm = schedule.time.strftime('%p') %>
+<% frequency = schedule.frequency %>
+
+<%= simple_form_for schedule, url: form_path,
+    html: { class: "#{form_class} form-horizontal schedule-form" },
+    :defaults => { :input_html => { :class => 'form-control' } } do |f| %>
+  <h3><%= form_title %></h3>
+
+  <p class="form-desc"><%= form_desc %></p>
+
+  <div class="form-group frequency">
+    <label class="control-label col-lg-2">Frequency</label>
+    <div class="btn-group col-lg-10" data-toggle="buttons">
+      <label class="btn btn-default <% if frequency == 'Daily' %>active<% end %>">
+        <input type="radio" name="scheduled_time[frequency]" value="Daily" <% if frequency == 'Daily' %>checked="checked"<% end %>> Daily
+      </label>
+      <label class="btn btn-default <% if frequency == 'Weekly' %>active<% end %>">
+        <input type="radio" name="scheduled_time[frequency]" value="Weekly" <% if frequency == 'Weekly' %>checked="checked"<% end %>> Weekly
+      </label>
+      <label class="btn btn-default <% if frequency == 'Monthly' %>active<% end %>">
+        <input type="radio" name="scheduled_time[frequency]" value="Monthly" <% if frequency == 'Monthly' %>checked="checked"<% end %>> Monthly
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group day">
+    <label class="control-label col-lg-2">Day</label>
+    <div class="controls col-lg-10">
+      <select name="scheduled_time[day]" class="scheduled-day" data-value="<%= schedule.day %>"></select>
+    </div>
+  </div>
+
+  <div class="form-group time">
+    <label class="control-label col-lg-2">Time</label>
+    <div class="controls col-lg-10">
+      <input type="text" class="form-control" name="scheduled_time[time]"
+             value="<%= schedule.time.strftime('%I:%M') %>" class="scheduled-time">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default <% if ampm == 'AM' %>active<% end %>">
+          <input type="radio" name="scheduled_time[ampm]" value="AM"> AM
+        </label>
+        <label class="btn btn-default <% if ampm == 'PM' %>active<% end %>">
+          <input type="radio" name="scheduled_time[ampm]" value="PM"> PM
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.button :submit, 'Update', class: 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

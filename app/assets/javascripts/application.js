@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require paloma
+//= require chosen/chosen.jquery.min
 //= require bootstrap/dist/js/bootstrap.js
+//= require jquery.maskedinput/jquery.maskedinput.min
 //= require listjs/list.min.js
 //= require listjs/plugins/fuzzy/list.fuzzySearch
 //= require handlebars.runtime

@@ -1,0 +1,63 @@
+@import "partials/colors";
+
+.settings .sidebar {
+  margin-top: 0;
+  background-color: $bg-gray;
+  padding: 20px;
+
+  .sidebar-nav {
+    list-style: none;
+    font-size: 22px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-top: 15px;
+      &:first-child { margin-top: 0; }
+    }
+
+    li a {
+      color: $black;
+      &:hover {
+        color: #4175A2;
+        text-decoration: none;
+      }
+    }
+  } // sidebar-nav
+}
+
+.settings .settings-content-wrapper {
+  padding: 0 20px;
+
+  .settings-content {
+    margin-left: 20px;
+  }
+
+  .general-updates {
+    h4 {
+      margin-top: 0;
+      font-weight: 600;
+    }
+    .input-group { max-width: 300px; }
+  }
+
+  .update-password {
+    max-width: 300px;
+    h3 { margin-bottom: 20px; }
+    input.btn {
+      height: 39px;
+      width: 100px;
+    }
+  }
+
+  .form-control { border-width: 1px; }
+}
+
+@media (min-width: 992px) {
+
+  .settings {
+    margin-top: 50px;
+  }
+}

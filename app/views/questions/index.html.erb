@@ -1,10 +1,14 @@
+<% content_for :site_page_title, 'Questions' %>
+
+<% content_for :content do %>
+
 <div class="showcase-wrapper add-question">
   <div class="showcase-content container">
     <h3 class="add-question-label">Hi Draco, what do you want to know about your team members?</h3>
     <%= simple_form_for Question.new do |f|  %>
       <div class="add-question-text input-group">
         <input type="text" class="form-control" placeholder="Write a question" name="question[content]">
-          <div class="input-group-btn btn-group">
+        <div class="input-group-btn btn-group">
           <button class="btn btn-default">Submit</button>
         </div>
       </div>
@@ -27,3 +31,5 @@
     window.LilButton.Questions.updateQuestionList(<%= raw @questions_data.to_json %>);
   });
 </script>
+
+<% end %>

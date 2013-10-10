@@ -2,3 +2,5 @@
 //= require ./_locals.js
 //= require ./_filters.js
 //= require ./questions/_manifest.js
+
+//= require ./settings/_manifest.js
