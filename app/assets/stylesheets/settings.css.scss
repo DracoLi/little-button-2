@@ -1,9 +1,10 @@
 @import "partials/colors";
 
-.settings .sidebar {
+.settings .settings-sidebar {
   margin-top: 0;
   background-color: $bg-gray;
   padding: 20px;
+  margin-bottom: 40px;
 
   .sidebar-nav {
     list-style: none;
@@ -55,7 +56,9 @@
 
 @media (min-width: 992px) {
 
-  .settings {
+  .settings-container {
     margin-top: 50px;
+
+    .settings-sidebar { margin-bottom: 0px; }
   }
 }

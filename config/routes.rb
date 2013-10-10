@@ -41,6 +41,9 @@ LittleButton2::Application.routes.draw do
     scope '/admin' do
       get '', to: 'settings#admin', as: 'settings_admin'
       patch '', to: 'settings#update_company_name', as: 'update_company_name'
+      patch 'update-company-domain',
+            to: 'settings#update_company_domain',
+            as: 'update_company_domain'
       patch 'update-collect-answers-schedule',
             to: 'settings#update_collect_answers_schedule',
             as: 'update_collect_answers_schedule'

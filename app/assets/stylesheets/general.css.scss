@@ -81,6 +81,8 @@ ul.line {
   }
 }
 
+.form-control.bolded-border { border-width: 2px; }
+
 .input-group {
   input[type="text"].form-control {
     border: solid 3px $input-border;

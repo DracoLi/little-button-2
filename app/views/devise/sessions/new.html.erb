@@ -1,13 +1,16 @@
 <% content_for :site_page_title, 'Sign in' %>
 
 <% content_for :content do %>
-
 <div class="login">
   <h1 class="logo">Loose Button</h1>
   <%= simple_form_for resource, :as => resource_name,
                       :url => session_path(resource_name),
                       :defaults => { :input_html => { :class => 'form-control' } } do |f| %>
-    <%= devise_error_messages! %>
+
+    <% if flash[:alert] %>
+      <div class="general-errors text-danger"><%= flash[:alert] %></div>
+    <% end %>
+
     <%= f.input :email, placeholder: 'Email', autofocus: true, label: false %>
     <%= f.input :password, placeholder: 'Password', label: false %>
     <%= f.button :submit, 'Login', class: 'btn btn-default' %>

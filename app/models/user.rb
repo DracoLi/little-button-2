@@ -24,12 +24,17 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :company
   has_many :answers, dependent: :destroy
   has_many :questions, dependent: :nullify
+
+  validates_presence_of :name, :email
+  validate :valid_company_email
+
+  before_save :assign_company_from_email
 
   def answered(question)
     question.answers.where(user: self).exists?
@@ -38,4 +43,20 @@ class User < ActiveRecord::Base
   def answer_for_question(question)
     question.answers.where(user: self).first
   end
+
+  protected
+
+    def valid_company_email
+      domain = self.email.split("@").last
+      unless Company.where(email_domain: domain).exists?
+        errros.add(:email, 'Company not registered with Little Button')
+      end
+    end
+
+    def assign_company_from_email
+      if self.email && self.company.nil?
+        domain = self.email.split("@").last
+        self.company = Company.where(email_domain: domain).first
+      end
+    end
 end

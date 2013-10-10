@@ -43,8 +43,8 @@
         <div class="myanswer-label input-label">Your Answer:</div>
         <%= simple_form_for Answer.new, url: form_path, method: form_method do |f| %>
           <div class="clearfix">
-            <textarea cols="50" rows="2" class="myanswer-text form-control" placeholder="Type in your answer" name="answer[content]"></textarea>
-            <button class="btn submit-btn btn-primary">Submit</button>
+            <textarea cols="50" rows="2" class="myanswer-text form-control bolded-border" placeholder="Type in your answer" name="answer[content]"></textarea>
+            <button class="btn submit-btn btn-default">Submit</button>
           </div>
         <% end %>
       </div>

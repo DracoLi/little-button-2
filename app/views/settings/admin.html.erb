@@ -17,6 +17,20 @@
 
   <hr>
 
+  <%= simple_form_for company, url: update_company_domain_path,
+      html: { class: 'update-company-domain general-updates' } do |f| %>
+    <h4>Update Company Domain</h4>
+    <p class="form-desc">Only users with emails under this domain can register for Little Button under <%= company.name %>.</p>
+    <div class="input-group">
+      <input type="text" class="form-control" name="company[email_domain]" value="<%= company.email_domain %>">
+      <div class="input-group-btn btn-group">
+        <button class="btn btn-default">Update</button>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
   <%= render partial: 'shared/frequency_form', locals: {
     schedule: company.email_answers_schedule,
     form_path: update_email_answers_schedule_path,
