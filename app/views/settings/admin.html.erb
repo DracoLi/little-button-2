@@ -31,15 +31,11 @@
   <hr>
 
   <%= simple_form_for company, url: update_company_path,
-      html: { class: 'update-company-timezone general-updates' } do |f| %>
-    <h4>Update Company Timezone</h4>
+      html: { class: 'update-company-domain general-updates' } do |f| %>
+    <h4>Update Company Domain</h4>
+    <p class="form-desc">Only users with emails under this domain can register for Little Button under <%= company.name %>.</p>
     <div class="input-group">
-      <%= time_zone_select("user", "time_zone",
-                           ActiveSupport::TimeZone.us_zones,
-                           {:default => company.timezone},
-                           :class => 'form-control chosen',
-                           :name => 'company[timezone]',
-                           :id => 'companyTimezone') %>
+      <input type="text" class="form-control" name="company[email_domain]" value="<%= company.email_domain %>">
       <div class="input-group-btn btn-group">
         <button class="btn btn-default">Update</button>
       </div>
@@ -49,11 +45,15 @@
   <hr>
 
   <%= simple_form_for company, url: update_company_path,
-      html: { class: 'update-company-domain general-updates' } do |f| %>
-    <h4>Update Company Domain</h4>
-    <p class="form-desc">Only users with emails under this domain can register for Little Button under <%= company.name %>.</p>
+      html: { class: 'update-company-timezone general-updates' } do |f| %>
+    <h4>Update Company Timezone</h4>
     <div class="input-group">
-      <input type="text" class="form-control" name="company[email_domain]" value="<%= company.email_domain %>">
+      <%= time_zone_select("user", "time_zone",
+                           ActiveSupport::TimeZone.us_zones,
+                           {:default => company.timezone},
+                           :class => 'form-control chosen',
+                           :name => 'company[timezone]',
+                           :id => 'companyTimezone') %>
       <div class="input-group-btn btn-group">
         <button class="btn btn-default">Update</button>
       </div>
