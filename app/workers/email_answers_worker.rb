@@ -7,11 +7,11 @@ class EmailsAnswersWorker
     # Get some answers to be sent out
     ques_count = (company.questions.count * 0.5).to_i
     questions = company.questions.order('answers_count DESC').limit(ques_count).all
-    question = Question.where("id in (?)", questions.map(&:id)).order('last_emailed_time DESC').first
+    question = Question.where("id in (?)", questions.map(&:id)).order('last_emailed_time ASC').first
 
     if question.answers.count > 0
       # Send the answers to people in the company
-      GeneralMailer.send_answers_to_question(company, question).deliver
+      GeneralMailer.send_answers_to_question(company, question)
 
       # Update last emailed time
       question.last_emailed_time = Time.zone.now

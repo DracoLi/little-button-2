@@ -37,32 +37,33 @@ class SettingsController < ApplicationController
     end
   end
 
-  def update_company_name
-    if company_name_params[:name].length == 0
-      flash[:error] = 'You must provide a company name'
-    elsif current_user.company.update_attributes(company_name_params)
-      flash[:sucess] = 'Company name updated'
-    else
-      flash[:error] = 'Unable to update company name'
+  def update_company
+    target_key = company_params.keys.first
+    if target_key == 'name'
+      key_name = 'name'
+    elsif target_key == 'botname'
+      key_name = 'bot name'
+    elsif target_key == 'timezone'
+      key_name = 'timezone'
+    elsif target_key == 'email_domain'
+      key_name = 'domain'
     end
-    redirect_to settings_admin_path
-  end
 
-  def update_company_botname
-    if company_botname_params[:botname].length == 0
-      flash[:error] = 'You must provide a company bot name'
-    elsif current_user.company.update_attributes(company_botname_params)
-      flash[:sucess] = 'Company bot name updated'
+    if company_params[target_key].length == 0
+      flash[:error] = "You must provide a #{key_name}."
+    elsif current_user.company.update_attributes(company_params)
+      flash[:sucess] = "Company #{key_name} updated."
     else
-      flash[:error] = 'Unable to update company bot name'
+      flash[:error] = "Unable to update #{key_name}."
     end
+
     redirect_to settings_admin_path
   end
 
   def update_collect_answers_schedule
     schedule = current_user.company.collect_answers_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for collect answer emails updated'
+      flash[:sucess] = 'Schedule for collect answer emails updated.'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -72,7 +73,7 @@ class SettingsController < ApplicationController
   def update_collect_questions_schedule
     schedule = current_user.company.collect_questions_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for collect question emails updated'
+      flash[:sucess] = 'Schedule for collect question emails updated.'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -82,7 +83,7 @@ class SettingsController < ApplicationController
   def update_email_answers_schedule
     schedule = current_user.company.email_answers_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for question answer emails updated'
+      flash[:sucess] = 'Schedule for question answer emails updated.'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -101,12 +102,8 @@ class SettingsController < ApplicationController
       adjusted_params
     end
 
-    def company_name_params
-      params.require(:company).permit(:name)
-    end
-
-    def company_botname_params
-      params.require(:company).permit(:botname)
+    def company_params
+      params.require(:company).permit(:name, :botname, :timezone, :email_domain)
     end
 
     def user_name_params

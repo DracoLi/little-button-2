@@ -18,6 +18,6 @@
 
 
   Paloma.callbacks['settings']['admin'] = function(params){
-
+    $('#companyTimezone').chosen();
   };
 })();

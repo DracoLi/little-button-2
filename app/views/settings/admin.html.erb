@@ -4,7 +4,7 @@
 
 <% content_for :settings_content do %>
 
-  <%= simple_form_for company, url: update_company_name_path,
+  <%= simple_form_for company, url: update_company_path,
       html: { class: 'update-company-name general-updates' } do |f| %>
     <h4>Update Company Name</h4>
     <div class="input-group">
@@ -17,7 +17,7 @@
 
   <hr>
 
-  <%= simple_form_for company, url: update_company_botname_path,
+  <%= simple_form_for company, url: update_company_path,
       html: { class: 'update-company-botname general-updates' } do |f| %>
     <h4>Customize Company Bot Name</h4>
     <div class="input-group">
@@ -30,7 +30,25 @@
 
   <hr>
 
-  <%= simple_form_for company, url: update_company_domain_path,
+  <%= simple_form_for company, url: update_company_path,
+      html: { class: 'update-company-timezone general-updates' } do |f| %>
+    <h4>Update Company Timezone</h4>
+    <div class="input-group">
+      <%= time_zone_select("user", "time_zone",
+                           ActiveSupport::TimeZone.us_zones,
+                           {:default => company.timezone},
+                           :class => 'form-control chosen',
+                           :name => 'company[timezone]',
+                           :id => 'companyTimezone') %>
+      <div class="input-group-btn btn-group">
+        <button class="btn btn-default">Update</button>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%= simple_form_for company, url: update_company_path,
       html: { class: 'update-company-domain general-updates' } do |f| %>
     <h4>Update Company Domain</h4>
     <p class="form-desc">Only users with emails under this domain can register for Little Button under <%= company.name %>.</p>

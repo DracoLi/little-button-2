@@ -8,7 +8,7 @@ class CollectQuestionsWorker
     GeneralMailer.ask_for_questions(company).deliver
 
     # Schedule the next question collection
-    next_diff = company.collect_questions_schedule.next_scheduled_time_diff(company.timezone)
+    next_diff = company.collect_questions_schedule.next_scheduled_time_diff
     CollectQuestionsWorker.perform_in(next_diff, company_id)
   end
 end
