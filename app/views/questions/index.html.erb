@@ -23,7 +23,10 @@
     <input type="search" placeholder="Search Questions" class="form-control search bolded-border">
   </div>
 
-  <ul class="list"></ul>
+  <% unless @questions_data.empty? %>
+    <ul class="list"></ul>
+  <% end %>
+
 </div>
 
 <script>

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20131012050216) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "timezone"
+    t.string   "timezone",     default: "UTC"
     t.string   "email_domain"
     t.string   "botname"
   end
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20131012050216) do
   create_table "scheduled_times", force: true do |t|
     t.string   "frequency"
     t.string   "day"
+    t.datetime "time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "collect_answers_schedule_id"
     t.integer  "collect_questions_schedule_id"
     t.integer  "email_answers_schedule_id"
-    t.datetime "time"
   end
 
   create_table "users", force: true do |t|

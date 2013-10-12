@@ -5,6 +5,7 @@ class EmailsAnswersWorker
     company = Company.find(company_id)
 
     # Get some answers to be sent out
+    # TODO: Priotize answers with nil last_emailed_time
     ques_count = (company.questions.count * 0.5).to_i
     questions = company.questions.order('answers_count DESC').limit(ques_count).all
     question = Question.where("id in (?)", questions.map(&:id)).order('last_emailed_time ASC').first

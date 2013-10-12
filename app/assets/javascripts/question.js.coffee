@@ -13,6 +13,7 @@ window.LilButton.Questions =
   addQuestion: (questionData) ->
     # Convert percentage float into string
     questionData['answered_p'] *= 100
+    questionData['answered_p'] = Math.round(questionData['answered_p'])
     questionHTML = HandlebarsTemplates['question-row'](questionData)
 
     # Prepend question to list

@@ -18,6 +18,10 @@
 #  name                   :string(255)
 #  company_id             :integer
 #  admin                  :boolean          default(FALSE)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -47,7 +51,7 @@ class User < ActiveRecord::Base
   protected
 
     def valid_company_email
-      domain = self.email.split("@").last
+      domain = email.split("@").last
       unless Company.where(email_domain: domain).exists?
         errors.add(:email, 'Company not registered with Little Button')
       end

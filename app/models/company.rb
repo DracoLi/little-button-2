@@ -2,11 +2,13 @@
 #
 # Table name: companies
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  timezone   :string(255)
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  timezone     :string(255)
+#  email_domain :string(255)
+#  botname      :string(255)
 #
 
 class Company < ActiveRecord::Base
