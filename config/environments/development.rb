@@ -36,6 +36,9 @@ LittleButton2::Application.configure do
     :domain    => 'heroku.com',
     :authentication => :plain
   }
+  MandrillMailer.configure do |config|
+    config.api_key = ENV['MANDRILL_API_KEY']
+  end
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.mandrill_mailer.default_url_options = { :host => 'localhost:3000' }

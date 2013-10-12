@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-
+    CollectQuestionsWorker.perform_in(1.minutes.from_now, company_id)
   end
 
   def create

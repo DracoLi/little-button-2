@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010184602) do
+ActiveRecord::Schema.define(version: 20131012050216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131010184602) do
     t.datetime "updated_at"
     t.string   "timezone"
     t.string   "email_domain"
+    t.string   "botname"
   end
 
   create_table "questions", force: true do |t|
@@ -47,12 +48,12 @@ ActiveRecord::Schema.define(version: 20131010184602) do
   create_table "scheduled_times", force: true do |t|
     t.string   "frequency"
     t.string   "day"
-    t.datetime "time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "collect_answers_schedule_id"
     t.integer  "collect_questions_schedule_id"
     t.integer  "email_answers_schedule_id"
+    t.datetime "time"
   end
 
   create_table "users", force: true do |t|

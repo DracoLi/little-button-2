@@ -3,6 +3,11 @@ LittleButton2::Application.routes.draw do
 
   root 'questions#index'
 
+
+  # Sidekiq processes
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   # User registration
   devise_for :users, :skip => [:sessions, :registration]
   as :user do
@@ -18,12 +23,6 @@ LittleButton2::Application.routes.draw do
   # Questions & Answers
   resources :questions, only: [:index, :show, :create, :destroy, :update] do
     resources :answers, only: [:update, :destroy, :create]
-  end
-
-  # Sidekiq processes
-  require 'sidekiq/web'
-  authenticate :admin_user do
-    mount Sidekiq::Web => '/sidekiq'
   end
 
   # Settings
@@ -46,6 +45,9 @@ LittleButton2::Application.routes.draw do
       patch 'update-company-domain',
             to: 'settings#update_company_domain',
             as: 'update_company_domain'
+      patch 'update-company-botname',
+            to: 'settings#update_company_botname',
+            as: 'update_company_botname'
       patch 'update-collect-answers-schedule',
             to: 'settings#update_collect_answers_schedule',
             as: 'update_collect_answers_schedule'

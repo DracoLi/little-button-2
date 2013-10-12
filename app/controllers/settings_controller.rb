@@ -15,9 +15,9 @@ class SettingsController < ApplicationController
 
   def settings_update_name
     if current_user.update_attributes(user_name_params)
-      flash[:sucess] = 'Your name is updated.'
+      flash[:sucess] = 'Your name is updated'
     else
-      flash[:error] = 'Unable to update your name.'
+      flash[:error] = 'Unable to update your name'
     end
     redirect_to settings_account_path
   end
@@ -25,11 +25,11 @@ class SettingsController < ApplicationController
   def settings_update_password
     if current_user.update_with_password(password_params)
       if password_params[:password].length <= 0
-        current_user.errors.add(:password, 'Please provide a new password.')
+        current_user.errors.add(:password, 'Please provide a new password')
         render 'account'
       else
         sign_in current_user, :bypass => true
-        flash[:sucess] = 'Your password is changed.'
+        flash[:sucess] = 'Your password is changed'
         redirect_to settings_account_path
       end
     else
@@ -38,10 +38,23 @@ class SettingsController < ApplicationController
   end
 
   def update_company_name
-    if current_user.company.update_attributes(company_name_params)
-      flash[:sucess] = 'Company name is updated.'
+    if company_name_params[:name].length == 0
+      flash[:error] = 'You must provide a company name'
+    elsif current_user.company.update_attributes(company_name_params)
+      flash[:sucess] = 'Company name updated'
     else
-      flash[:error] = 'Unable to update company name.'
+      flash[:error] = 'Unable to update company name'
+    end
+    redirect_to settings_admin_path
+  end
+
+  def update_company_botname
+    if company_botname_params[:botname].length == 0
+      flash[:error] = 'You must provide a company bot name'
+    elsif current_user.company.update_attributes(company_botname_params)
+      flash[:sucess] = 'Company bot name updated'
+    else
+      flash[:error] = 'Unable to update company bot name'
     end
     redirect_to settings_admin_path
   end
@@ -49,7 +62,7 @@ class SettingsController < ApplicationController
   def update_collect_answers_schedule
     schedule = current_user.company.collect_answers_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for collect answer emails are updated.'
+      flash[:sucess] = 'Schedule for collect answer emails updated'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -59,7 +72,7 @@ class SettingsController < ApplicationController
   def update_collect_questions_schedule
     schedule = current_user.company.collect_questions_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for collect question emails are updated.'
+      flash[:sucess] = 'Schedule for collect question emails updated'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -69,7 +82,7 @@ class SettingsController < ApplicationController
   def update_email_answers_schedule
     schedule = current_user.company.email_answers_schedule
     if schedule.update_attributes(schedule_params)
-      flash[:sucess] = 'Schedule for question answer emails are updated.'
+      flash[:sucess] = 'Schedule for question answer emails updated'
       redirect_to settings_admin_path
     else
       render 'admin'
@@ -80,13 +93,20 @@ class SettingsController < ApplicationController
 
     def schedule_params
       adjusted_params = params.require(:scheduled_time).permit(:frequency, :day, :time, :ampm)
-      adjusted_params[:time] = Time.parse("#{adjusted_params[:time]} #{adjusted_params[:ampm]}", Time.now)
+
+      # Adjust time for saving into database
+      adjusted_params[:time] = Time.parse("#{adjusted_params[:time]} adjusted_params[:ampm] utc")
       adjusted_params.delete(:ampm)
+
       adjusted_params
     end
 
     def company_name_params
       params.require(:company).permit(:name)
+    end
+
+    def company_botname_params
+      params.require(:company).permit(:botname)
     end
 
     def user_name_params

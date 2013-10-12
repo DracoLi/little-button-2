@@ -3,13 +3,16 @@
           from_name: "Crazy Bot"
 
   def ask_for_questions(company)
-    vars = {'FROM_NAME' => 'Crazy Bot'}
-    recipients = company.users
-    mandrill_mail template: 'add-lilbutton-question',
-      subject: "It's time to ask your buddies at #{company.name} a question!",
-      to: recipients.map {|user| { email: user.email, name: user.name }},
-      vars: vars,
-      recipient_vars: recipients.map {|user| { user.email => { "NAME" => user.name }}}
+    vars = {'FROM_NAME' => company.botname}
+    company.users.each do |user|
+      mail = mandrill_mail template: 'add-lilbutton-question',
+        subject: "Ask your colleagues at #{company.name} a question",
+        to: { email: user.email, name: user.name },
+        from_name: company.botname,
+        vars: vars
+      mail.deliver
+    end
+
   end
 
   def ask_for_answers(company, questions_data)
@@ -17,14 +20,17 @@
       question = Question.find(ques_id)
       recipients = users
       vars = {
-        'FROM_NAME' => 'Crazy Bot',
+        'FROM_NAME' => company.botname,
         'QUESTION' => question.content
       }
-      mandrill_mail template: 'add-lilbutton-answer',
-        subject: question.content,
-        to: recipients.map {|user| { email: user.email, name: user.name }},
-        vars: vars,
-        recipient_vars: recipients.map {|user| { user.email => { "NAME" => user.name }}}
+      recipients.each do |user|
+        mail = mandrill_mail template: 'add-lilbutton-answer',
+          subject: question.content,
+          to: { email: user.email, name: user.name },
+          from_name: company.botname,
+          vars: vars
+        mail.deliver
+      end
     end
   end
 
@@ -34,14 +40,18 @@
       answers_content += "<p><b>#{answer.user.name}:</b> #{answer.content}</p>"
     end
     vars = {
-      'FROM_NAME' => 'Crazy Bot',
-      'QUESTION' => question.content
+      'FROM_NAME' => company.botname,
+      'QUESTION' => question.content,
+      'ANSWERS' => answers_content
     }
-    recipients = company.users
-    mandrill_mail template: 'send-lilbutton-answers',
-      subject: "#{company.name} Team Answers: #{question.content}",
-      to: recipients.map {|user| { email: user.email, name: user.name }},
-      vars: vars
+    company.users.each do |user|
+      mail = mandrill_mail template: 'send-lilbutton-answers',
+        subject: "Your colleagues answer: #{question.content}",
+        to: { email: user.email, name: user.name },
+        from_name: company.botname,
+        vars: vars
+      mail.deliver
+    end
   end
 
  end

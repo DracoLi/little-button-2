@@ -15,40 +15,75 @@
 
 class ScheduledTime < ActiveRecord::Base
 
-  belongs_to :company, inverse_of: :collect_answers_schedule
-  belongs_to :company, inverse_of: :collect_questions_schedule
-  belongs_to :company, inverse_of: :email_answers_schedule
+  belongs_to :collect_answers_schedule, class_name: 'Company'
+  belongs_to :collect_questions_schedule, class_name: 'Company'
+  belongs_to :email_answers_schedule, class_name: 'Company'
 
-  def next_scheduled_time(timezone)
+  def company
+    if self.collect_answers_schedule
+      self.collect_answers_schedule
+    elsif self.collect_questions_schedule
+      self.collect_questions_schedule
+    elsif self.email_answers_schedule
+      self.email_answers_schedule
+    end
+  end
 
+  def wday
+    day = self.day
+    if day == 'Monday'
+      1
+    elsif day == 'Tuesday'
+      2
+    elsif day == 'Wednesday'
+      3
+    elsif day == 'Thursday'
+      4
+    elsif day == 'Friday'
+      5
+    elsif day == 'Saturday'
+      6
+    elsif day == 'Sunday'
+      7
+    end
+  end
+
+  def next_scheduled_time_diff
+    timezone = self.company.timezone
+    next_time = self.next_scheduled_time.in_time_zone(timezone)
+    next_time - ActiveSupport::TimeZone[timezone].now
+  end
+
+  def next_scheduled_time
     next_time = nil
-
+    timezone = self.company.timezone
+    time = self.time.utc
     Time.use_zone(timezone) do
       now = Time.zone.now
 
-      if self.frequency == 'daily'
+      if self.frequency == 'Daily'
 
-        next_time = Time.zone.local(now.year, now.month, now.day, self.time.hour, self.time.min)
+        next_time = Time.zone.local(now.year, now.month, now.day, time.hour, time.min)
         if next_time <= now
           next_time = next_time + 1.day
         end
 
-      elsif self.frequency == 'weekly'
+      elsif self.frequency == 'Weekly'
 
-        next_time = Time.zone.local(now.year, now.month, now.day, self.time.hour, self.time.min)
+        next_time = Time.zone.local(now.year, now.month, now.day, time.hour, time.min)
 
         # Handle next is next week
-        if next_time.wday > self.day || \
-           (next_time.wday == self.day && next_time < now)
+        if next_time.wday > self.wday || \
+           (next_time.wday == self.wday && next_time < now)
           next_time = next_time + 7.days
         end
 
         # Adjust time so we are on the right day of the week
-        next_time = next_time + (self.day - now.wday).days
+        next_time = next_time + (self.wday - now.wday).days
 
-      elsif self.frequency == 'monthly'
+      elsif self.frequency == 'Monthly'
 
-        next_time = Time.zone.local(now.year, now.month, self.day, self.time.hour, self.time.min)
+        next_time = Time.zone.local(now.year, now.month, self.day, time.hour, time.min)
         if next_time <= now
           next_time = next_time + 1.month
         end
@@ -60,6 +95,6 @@ class ScheduledTime < ActiveRecord::Base
   end
 
   def to_s
-    "Schedule: #{self.frequency}, day (#{self.day}), #{self.time.strftime("%I:%M %p")}"
+    "Schedule: #{self.frequency}, day (#{self.day}), #{self.time.in_time_zone(self.company.timezone).strftime("%I:%M %p")}"
   end
 end

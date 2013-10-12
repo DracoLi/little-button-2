@@ -1,4 +1,4 @@
-<% ampm = schedule.time.strftime('%p') %>
+<% ampm = schedule.time.utc.strftime('%p') %>
 <% frequency = schedule.frequency %>
 
 <%= simple_form_for schedule, url: form_path,
@@ -34,7 +34,7 @@
     <label class="control-label col-lg-2">Time</label>
     <div class="controls col-lg-10">
       <input type="text" class="form-control" name="scheduled_time[time]"
-             value="<%= schedule.time.strftime('%I:%M') %>" class="scheduled-time">
+             value="<%= schedule.time.utc.strftime('%I:%M') %>" class="scheduled-time">
       <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-default <% if ampm == 'AM' %>active<% end %>">
           <input type="radio" name="scheduled_time[ampm]" value="AM" <% if ampm == 'AM' %>checked="checked"<% end %>> AM

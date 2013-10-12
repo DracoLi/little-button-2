@@ -17,6 +17,19 @@
 
   <hr>
 
+  <%= simple_form_for company, url: update_company_botname_path,
+      html: { class: 'update-company-botname general-updates' } do |f| %>
+    <h4>Customize Company Bot Name</h4>
+    <div class="input-group">
+      <input type="text" class="form-control" name="company[botname]" value="<%= company.botname %>">
+      <div class="input-group-btn btn-group">
+        <button class="btn btn-default">Update</button>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
   <%= simple_form_for company, url: update_company_domain_path,
       html: { class: 'update-company-domain general-updates' } do |f| %>
     <h4>Update Company Domain</h4>

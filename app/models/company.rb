@@ -35,17 +35,17 @@ class Company < ActiveRecord::Base
       self.create_collect_answers_schedule({
         frequency: 'Weekly',
         day: '3',
-        time: ActiveSupport::TimeZone[self.timezone].parse('2000-01-01 9am')
+        time: Time.parse('2000-01-01 9am utc')
       })
       self.create_collect_questions_schedule({
         frequency: 'Weekly',
         day: '2',
-        time: ActiveSupport::TimeZone[self.timezone].parse('2000-01-01 9am')
+        time: Time.parse('2000-01-01 9am utc')
       })
       self.create_email_answers_schedule({
         frequency: 'Weekly',
         day: '1',
-        time: ActiveSupport::TimeZone[self.timezone].parse('2000-01-01 9am')
+        time: Time.parse('2000-01-01 9am utc')
       })
       self.save
     end
