@@ -36,17 +36,17 @@ class Company < ActiveRecord::Base
       self.timezone = Time.zone.name if self.timezone.nil?
       self.create_collect_answers_schedule({
         frequency: 'Weekly',
-        day: '3',
+        day: 'Wednesday',
         time: Time.parse('2000-01-01 9am utc')
       })
       self.create_collect_questions_schedule({
         frequency: 'Weekly',
-        day: '2',
+        day: 'Wednesday',
         time: Time.parse('2000-01-01 9am utc')
       })
       self.create_email_answers_schedule({
         frequency: 'Weekly',
-        day: '1',
+        day: 'Monday',
         time: Time.parse('2000-01-01 9am utc')
       })
       self.save
