@@ -6,7 +6,7 @@
     vars = {'FROM_NAME' => company.botname}
     company.users.each do |user|
       mail = mandrill_mail template: 'add-lilbutton-question',
-        subject: "Ask your colleagues at #{company.name} a question",
+        subject: "Ask your team at #{company.name} a question",
         to: { email: user.email, name: user.name },
         from_name: company.botname,
         vars: vars
@@ -46,7 +46,7 @@
     }
     company.users.each do |user|
       mail = mandrill_mail template: 'send-lilbutton-answers',
-        subject: "Your colleagues answer: #{question.content}",
+        subject: "Team #{company.name} answers: #{question.content}",
         to: { email: user.email, name: user.name },
         from_name: company.botname,
         vars: vars
