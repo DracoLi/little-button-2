@@ -1,10 +1,13 @@
 class EmailProcessor
   def self.process(email)
-    print email.from
-    print email.from.class
     from_email = email.from
     print "From Email: #{from_email}"
-    user = User.find(email: from_email)
+    user = User.where(email: from_email)
+    if user.exists?
+      user = user.first
+    else
+      return
+    end
 
     # Take only the first line]
     print email.body
