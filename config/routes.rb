@@ -3,7 +3,6 @@ LittleButton2::Application.routes.draw do
 
   root 'questions#index'
 
-
   # Sidekiq processes
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

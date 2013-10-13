@@ -1,5 +1,5 @@
  class GeneralMailer < MandrillMailer::TemplateMailer
-  default from: 'crazybot@littlebutton.co',
+  default from: 'bot@betteremailing.com',
           from_name: "Crazy Bot"
 
   def ask_for_questions(company)

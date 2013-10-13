@@ -6,12 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-company = Company.create(name: 'Draken Solutions', email_domain: 'dracoli.com')
+company = Company.create({
+  name: 'Draken Solutions',
+  email_domain: 'dracoli.com',
+  botname: 'Draco Bot',
+  timezone: 'Eastern Time (US & Canada)'
+})
 user = User.new({
   company: company,
-  botname: 'Draco Bot',
   admin: true,
-  timezone: 'Eastern Time (US & Canada)',
   name: 'Draco Li',
   email: 'draco@dracoli.com',
   password: 'password'
