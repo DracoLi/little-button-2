@@ -25,7 +25,7 @@
       }
       recipients.each do |user|
         mail = mandrill_mail template: 'add-lilbutton-answer',
-          subject: "|Answer Needed| #{question.content}",
+          subject: '|Answer Needed| ' + question.content,
           to: { email: user.email, name: user.name },
           from_name: company.botname,
           vars: vars
