@@ -10,9 +10,7 @@ class EmailProcessor
     end
 
     # Take only the first line]
-    print email.body
     content = email.body.lines.first.strip
-    print "Content: #{content}"
 
     # Add a new question
     if email.subject.include? "Ask your team at"
@@ -23,8 +21,10 @@ class EmailProcessor
     end
 
     # Add a new answer to question
+    print "\nSubject: #{email.subject}\n"
     if email.subject.include? '|Answer Needed|'
       ques_content = email.subject.gsub(/\|Answer Needed\|\s/, '')
+      print "\nQues: #{ques_content}\n"
       question = user.company.questions.where(content: ques_content)
       if question.exists?
         question.first.answers.create(content: content, user: user)
