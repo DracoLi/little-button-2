@@ -23,7 +23,9 @@ class EmailProcessor
     # Add a new answer to question
     print "\nSubject: #{email.subject}\n"
     if email.subject.include? '|Answer Needed|'
-      ques_content = email.subject.gsub(/\|Answer Needed\|\s/, '')
+      search = '|Answer Needed| '
+      startpos = email.subject.index(search) + search.length
+      ques_content = email.subject[startpos..-1]
       print "\nQues: #{ques_content}\n"
       question = user.company.questions.where(content: ques_content)
       if question.exists?
