@@ -1,7 +1,6 @@
 class EmailProcessor
   def self.process(email)
     from_email = email.from
-    print "From Email: #{from_email}"
     user = User.where(email: from_email)
     if user.exists?
       user = user.first
@@ -21,12 +20,10 @@ class EmailProcessor
     end
 
     # Add a new answer to question
-    print "\nSubject: #{email.subject}\n"
     if email.subject.include? '|Answer Needed|'
       search = '|Answer Needed| '
       startpos = email.subject.index(search) + search.length
       ques_content = email.subject[startpos..-1]
-      print "\nQues: #{ques_content}\n"
       question = user.company.questions.where(content: ques_content)
       if question.exists?
         question.first.answers.create(content: content, user: user)
