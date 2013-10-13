@@ -1,11 +1,13 @@
 class EmailProcessor
   def self.process(email)
     print email.from
-    from_email = email.from.first["email"]
+    print email.from.class
+    from_email = email.from
     print "From Email: #{from_email}"
     user = User.find(email: from_email)
 
-    # Take only the first line
+    # Take only the first line]
+    print email.body
     content = email.body.lines.first.strip
     print "Content: #{content}"
 
