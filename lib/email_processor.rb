@@ -1,7 +1,5 @@
 class EmailProcessor
   def self.process(email)
-    print email
-    pp email
     from_email = email.from.first[:email]
     print "From Email: #{from_email}"
     user = User.find(email: from_email)
