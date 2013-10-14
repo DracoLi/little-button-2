@@ -78,8 +78,8 @@ LittleButton2::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.default_url_options = { :host => 'heroku.com' }
-  config.mandrill_mailer.default_url_options = { :host => 'heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'littlebutton.dracoli.com' }
+  config.mandrill_mailer.default_url_options = { :host => 'littlebutton.dracoli.com' }
 
   # Configure mail
   config.action_mailer.smtp_settings = {
