@@ -1,0 +1,31 @@
+<% content_for :site_page_title, 'Unanswered Questions' %>
+
+<% content_for :dashboard_content do %>
+
+<div class="unanswered-container container">
+
+  <h2>Unanswered Questions</h2>
+
+  <%= simple_form_for :question, url: submit_answers_path,
+                      html: { class: "unanswered-list" } do |f| %>
+
+    <% if !@questions.blank? %>
+      <% for ques in @questions %>
+        <div class="unanswered-question">
+          <h4><%= ques.content %></h4>
+          <textarea cols="50" rows="2" class="form-control"
+          name="question[<%= ques.id %>]"></textarea>
+        </div>
+      <% end %>
+
+      <div class="submit-wrapper">
+        <%= f.button :submit, 'Submit', class: 'btn-default' %>
+      </div>
+
+    <% else %>
+      <h4>Good job! You have no unanswered questions.</h4>
+    <% end %>
+  <% end %>
+</div>
+
+<% end %>

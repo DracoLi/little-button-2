@@ -1,4 +1,5 @@
 @import "partials/colors";
+@import "partials/general";
 
 .add-question {
 
@@ -144,5 +145,29 @@
       font-size: 15px;
     }
     .answer-content { font-weight: normal; }
+  }
+}
+
+.unanswered-container {
+  > h2 { margin-top: 40px; }
+
+  .unanswered-list {
+    margin-top: 40px;
+    max-width: 450px;
+  }
+
+  .unanswered-question {
+    margin-top: 40px;
+    &:first-child { margin-top: 0; }
+  }
+
+  .submit-wrapper {
+    @include clearfix;
+    margin-top: 30px;
+    input[type="submit"] {
+      float: right;
+      width: 200px;
+      height: 40px;
+    }
   }
 }

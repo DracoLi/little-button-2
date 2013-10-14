@@ -18,7 +18,7 @@ class CollectAnswersWorker
     company.users.each do |user|
       questions.each do |ques|
         # Find an unanswered question for this user
-        if !user.answered(ques)
+        if !user.answered?(ques)
           if !all_questions.has_key?(ques.id)
             all_questions[ques.id] = []
           end

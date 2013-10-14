@@ -2,13 +2,30 @@ class QuestionsController < ApplicationController
   layout "dashboard"
 
   before_filter :authenticate_user!
-  before_filter :current_question, except: [:index, :create, :new]
+  before_filter :current_question, except: [:index, :create,
+                                            :new, :unanswered, :submit_answers]
 
   def index
     @questions = company_questions.order(:created_at)
     @questions_data = @questions.map do |ques|
       ques.question_data_for_user(current_user)
     end
+  end
+
+  def unanswered
+    @questions = current_user.unanswered_questions
+  end
+
+  def submit_answers
+    params["question"].each do |k, v|
+      next if v.length == 0
+      ques = current_user.company.questions.find(k)
+      ques.answers.create({
+        user: current_user,
+        content: v
+      })
+    end
+    redirect_to unanswered_path
   end
 
   def show

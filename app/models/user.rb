@@ -40,12 +40,22 @@ class User < ActiveRecord::Base
 
   before_save :assign_company_from_email
 
-  def answered(question)
+  def answered?(question)
     question.answers.where(user: self).exists?
   end
 
   def answer_for_question(question)
     question.answers.where(user: self).first
+  end
+
+  def unanswered_questions
+    Question.where(company: self.company).select do |ques|
+      !self.answered?(ques)
+    end
+  end
+
+  def answered_questions
+    self.answers.map(&:question)
   end
 
   protected

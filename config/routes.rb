@@ -23,6 +23,8 @@ LittleButton2::Application.routes.draw do
   resources :questions, only: [:index, :show, :create, :destroy, :update] do
     resources :answers, only: [:update, :destroy, :create]
   end
+  get 'unanswered', to: 'questions#unanswered', as: 'unanswered'
+  post 'unanswered', to: 'questions#submit_answers', as: 'submit_answers'
 
   # Settings
   scope '/settings' do

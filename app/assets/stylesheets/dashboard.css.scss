@@ -8,7 +8,7 @@ $link-hover-bg: #E6E6E6;
   margin-bottom: 0;
 }
 
-.navbar-header {
+.navbar .navbar-header {
   .navbar-brand {
 
     .main-brand {
@@ -25,10 +25,16 @@ $link-hover-bg: #E6E6E6;
   }
 }
 
-.navbar-nav.navbar-right {
+.navbar .navbar-right {
 
-  .dropdown-toggle { line-height: 23px; }
-  .dropdown-toggle:hover {
+  li.unanswered a { color: $dark-red; }
+
+  a {
+    padding: 18px 15px;
+    color: $black;
+    line-height: 20px;
+  }
+  a:hover {
     background-color: $link-hover-bg;
   }
 
@@ -46,8 +52,6 @@ $link-hover-bg: #E6E6E6;
 
   .user-name {
     float: left;
-    margin-top: 3px;
-    margin-left: 5px;
     color: $black;
 
     .caret {

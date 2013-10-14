@@ -56,7 +56,7 @@ class Question < ActiveRecord::Base
 
   def question_data_for_user(user)
     self.question_data.merge({
-      answered: user.answered(self)
+      answered: user.answered?(self)
     })
   end
 end
