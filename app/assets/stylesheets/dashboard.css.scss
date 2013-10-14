@@ -29,12 +29,12 @@ $link-hover-bg: #E6E6E6;
 
   li.unanswered a { color: $dark-red; }
 
-  a {
+  > li > a {
     padding: 18px 15px;
     color: $black;
     line-height: 20px;
   }
-  a:hover {
+  > li > a:hover {
     background-color: $link-hover-bg;
   }
 
