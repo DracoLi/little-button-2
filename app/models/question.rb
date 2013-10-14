@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
   has_many :answers
 
   def answered_p
-    self.company.users.count / self.answers.count.to_f
+    self.answers.count.to_f / self.company.users.count
   end
 
   def latest_answer
