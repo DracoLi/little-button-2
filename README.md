@@ -14,3 +14,9 @@ Flat design
 - handlebars float to percentage
 - handlebars do no escape html
 - nuffly on dependent confirm (in user)
+
+## Loading data from csv
+```
+require "#{Rails.root}/lib/parsers/old_google_form"
+Parsers::OldGoogleForm.parse_data(path_to_csv, company)
+```
