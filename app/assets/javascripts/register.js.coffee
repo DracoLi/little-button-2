@@ -1,5 +1,5 @@
 $ ->
-  $('.devise-registrations-new .user_email input').blur ->
+  $('.registrations .user_email input').blur ->
     $input = $(@)
     $sublogo = $input.parents('.login').find('.sub-logo')
     email = $input.val()
