@@ -17,7 +17,7 @@ LittleButton2::Application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
   get 'confirm-email' => 'users#confirm_email', as: 'confirm_email'
-  get 'company-from-email' => 'companies#company_from_email', as: 'company_from_email'
+  get 'api/company-from-email' => 'companies#company_from_email', as: 'company_from_email'
 
   # Questions & Answers
   resources :questions, only: [:index, :show, :create, :destroy, :update] do
@@ -25,6 +25,10 @@ LittleButton2::Application.routes.draw do
   end
   get 'unanswered', to: 'questions#unanswered', as: 'unanswered'
   post 'unanswered', to: 'questions#submit_answers', as: 'submit_answers'
+
+  # API for little button to get facts
+  # TODO: Make this secured
+  get 'api/little-button-chrome', to: 'companies#little_button_chrome'
 
   # Settings
   scope '/settings' do
