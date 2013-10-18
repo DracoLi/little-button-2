@@ -96,9 +96,15 @@ class SettingsController < ApplicationController
       adjusted_params = params.require(:scheduled_time).permit(:frequency, :day, :time, :ampm)
 
       # Adjust time for saving into database
-      adjusted_params[:time] = Time.parse("#{adjusted_params[:time]} adjusted_params[:ampm] utc")
-      adjusted_params.delete(:ampm)
+      hour, min = adjusted_params[:time].split(':').map(&:to_i)
+      hour += 12 if adjusted_params[:ampm] == 'PM'
+      begin
+        adjusted_params[:time] = Time.utc(2000, 01, 1, hour, min)
+      rescue
+        adjusted_params[:time] = Time.utc(2000, 01, 1, 12, 0)
+      end
 
+      adjusted_params.delete(:ampm)
       adjusted_params
     end
 
