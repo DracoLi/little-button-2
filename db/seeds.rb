@@ -21,4 +21,5 @@ user = User.new({
 })
 user.skip_confirmation!
 user.save!
+user.no_welcome_email = true
 user.confirm!

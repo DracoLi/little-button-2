@@ -2,6 +2,23 @@
   default from: 'bot@littlebutton.dracoli.com',
           from_name: "Draco Bot"
 
+  def welcome_message(user)
+    company = user.company
+    vars = {
+      'USER_NAME' => user.name,
+      'SERVICE_NAME' => "Little Button for #{company.name}",
+      'FROM_NAME' => user.company.botname,
+      'COLLECT_ANSWER' => company.collect_answers_schedule.to_s,
+      'COLLECT_QUESTION' => company.collect_questions_schedule.to_s,
+      'EMAIL_ANSWERS' => company.email_answers_schedule.to_s
+    }
+    mandrill_mail template: 'welcome-user',
+      subject: "Welcome to Little Button for #{company.name}",
+      to: { email: user.email, name: user.name },
+      from_name: company.botname,
+      vars: vars
+  end
+
   def ask_for_questions(company)
     vars = {'FROM_NAME' => company.botname}
     company.users.each do |user|

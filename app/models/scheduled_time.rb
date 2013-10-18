@@ -95,6 +95,13 @@ class ScheduledTime < ActiveRecord::Base
   end
 
   def to_s
-    "Schedule: #{self.frequency}, day (#{self.day}), #{self.time.in_time_zone(self.company.timezone).strftime("%I:%M %p")}"
+    time_of_day = self.time.in_time_zone(self.company.timezone).strftime("%l:%M%P")
+    if self.frequency == 'Daily'
+      "#{self.frequency} at #{time_of_day}"
+    elsif self.frequency == 'Weekly'
+      "#{self.frequency}, every #{self.day} at #{time_of_day}"
+    elsif self.frequency = 'Monthly'
+      "#{self.frequency} on day #{self.day} at #{time_of_day}"
+    end
   end
 end

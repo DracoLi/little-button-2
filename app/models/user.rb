@@ -40,6 +40,13 @@ class User < ActiveRecord::Base
 
   before_save :assign_company_from_email
 
+  attr_accessor :no_welcome_email
+
+  def confirm!
+    GeneralMailer.welcome_message(self).deliver unless self.no_welcome_email
+    super
+  end
+
   def answered?(question)
     question.answers.where(user: self).exists?
   end

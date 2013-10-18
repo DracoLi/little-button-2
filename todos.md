@@ -1,5 +1,6 @@
 # TODOs
 
+- ~chrome plugin update~
 - Add real data for loose button with the correct doamin name
   - Set updates to weekly on monday
   - Upload the full google csv

@@ -5,7 +5,7 @@ $ ->
     email = $input.val()
     if email.length > 0 and $input.data('last-email') != email
       $sublogo.html ''
-      $.get "/company-from-email?email=#{email}", (data) ->
+      $.get "api/company-from-email?email=#{email}", (data) ->
         if data.name.length > 0
           $input.data 'last-email', email
           $sublogo.html "for #{data.name}"
