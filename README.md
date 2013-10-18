@@ -18,5 +18,6 @@ Flat design
 ## Loading data from csv
 ```
 require "#{Rails.root}/lib/parsers/old_google_form"
+path_to_csv = "#{Rails.root}/olddata.csv"
 Parsers::OldGoogleForm.parse_data(path_to_csv, company)
 ```
