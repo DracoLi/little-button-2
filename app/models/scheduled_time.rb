@@ -95,7 +95,8 @@ class ScheduledTime < ActiveRecord::Base
   end
 
   def to_s
-    time_of_day = self.time.in_time_zone(self.company.timezone).strftime("%l:%M%P")
+    next_time = self.next_scheduled_time
+    time_of_day = next_time.strftime("%l:%M%P").strip + " #{next_time.zone}"
     if self.frequency == 'Daily'
       "#{self.frequency} at #{time_of_day}"
     elsif self.frequency == 'Weekly'
