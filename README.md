@@ -1,23 +1,14 @@
-- Website
-  - View all questions - for starting package
-  - Add question
-  - View answers for each question
-  - Registering under company
-  - View all individual's answers or answers for question
-  - Schedule ask for question frequency
-  - Schedule fact emails
-  - API to get question answers, answers for user
+# Little Button 2.0
 
+This is a super cool web app that utilizes scheduled emails to gather and display fun information about your team members. This means that your team can start using this app without doing anything or learning how to use any websites!
 
-Flat design
+This app is currently being tested at [Loose Button](https://loosebutton.com/). You can view the login screen [here](http://littlebutton.dracoli.com/). Only Loose Button members can sign up at the moment. 
 
-- handlebars float to percentage
-- handlebars do no escape html
-- nuffly on dependent confirm (in user)
+For screenshots of the application, view it on my website [here](http://www.dracoli.com/#/projects/little-button).
 
-## Loading data from csv
-```
-require "#{Rails.root}/lib/parsers/old_google_form"
-path_to_csv = "#{Rails.root}/olddata.csv"
-Parsers::OldGoogleForm.parse_data(path_to_csv, company)
-```
+## Notes
+Built with Rails, [sidekiq](http://sidekiq.org/)
+
+## License
+Licensed under [MIT](http://www.opensource.org/licenses/mit-license.php). Whoopeee!
+
